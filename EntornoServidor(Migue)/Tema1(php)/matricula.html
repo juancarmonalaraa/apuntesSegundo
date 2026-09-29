@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Calculadora de IMC</title></head>
+<body>
+    <h1>Calculadora de IMC</h1>
+    <form action="porcesarIMC.php" method="POST">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" maxlength="20" required>
+        <br>
+        <label for="edad">Edad</label>
+        <input type="number" name="edad" id="edad" min="0" max="130" required>
+
+        <!-- TODO: añade altura en cm, como entero entre 50 y 300, name="altura". -->
+        <!-- TODO: añade peso en kg, admitiendo decimales entre 20 y 500, name="peso". -->
+        <!-- TODO: añade el botón de envío. -->
+    </form>
+</body>
+</html>
