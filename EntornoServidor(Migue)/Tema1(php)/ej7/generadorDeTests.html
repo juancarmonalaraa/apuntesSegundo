@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Generador de tests</title></head>
+<body>
+    <h1>Generador de tests</h1>
+    <form action="generadorDeTests.php" method="POST">
+        <label for="asignatura">Asignatura:</label>
+        <select id="asignatura" name="asignatura" required>
+            <option value="matematicas">Matemáticas</option>
+            <!-- TODO: incorpora Historia y Ciencias con los valores del repositorio. -->
+        </select>
+        <!-- TODO: añade numeroDePreguntas (entero entre 1 y 5). -->
+        <br><button type="submit">Generar test</button>
+    </form>
+</body>
+</html>

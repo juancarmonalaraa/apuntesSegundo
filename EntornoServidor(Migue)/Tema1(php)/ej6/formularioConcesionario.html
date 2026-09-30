@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Concesionario</title></head>
+<body>
+    <h1>Configura tu coche</h1>
+    <form action="procesarConcesionario.php" method="POST">
+        <fieldset>
+            <legend>Modelo (obligatorio)</legend>
+            <label><input type="radio" name="Modelo" value="Compacto" required> Compacto</label>
+            <!-- TODO: añade Sedán y SUV con el mismo name. -->
+        </fieldset>
+        <!-- TODO: añade fieldsets con radios para Motor, Color, Llantas y Equipamiento. -->
+        <!-- TODO: añade un fieldset de checkboxes name="Accesorios[]" con los ocho accesorios. -->
+        <label>Cantidad (1–5): <input type="number" name="cantidad" min="1" max="5" value="1" required></label>
+        <!-- TODO: añade el campo opcional de texto name="codigo_descuento". -->
+        <br><button type="submit">Calcular precio</button>
+    </form>
+</body>
+</html>
