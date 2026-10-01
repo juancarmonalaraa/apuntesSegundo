@@ -10,8 +10,69 @@
         <label for="apellidos">Apellidos</label>
         <input type="text" id="apellidos" name="apellidos" maxlength="20" required>
 
-        <!-- TODO: crea un select name="edad" con los cuatro intervalos del enunciado. -->
-        <!-- TODO: crea el campo numérico name="peso" que admita decimales. -->
+        <label for="edad">Edad</label>
+        <select name="edad" id="edad" required>
+            <option value="">Selecciona un intervalo</option>
+            <option value="Menos de 20 años">0-18</option>
+            <option value="Entre 20 y 39 años">19-35</option>
+            <option value="Entre 40 y 59 años">36-60</option>
+            <option value="60 años o más">61+</option>
+
+        <label for="peso">Peso</label>
+        <input name="peso" type="number" id="peso" name="peso" max="500" min="20" step="0.01" required>
+        <br>
+
+        <br>
+        <label for="sexo">Sexo</label>
+        <br>
+        <input name="sexo" id="sexo-masculino" type="radio" value="masculino">
+        <label for="sexo-masculino">Masculino</label>
+
+        <input name="sexo" id="sexo-femenino" type="radio" value="femenino">
+        <label for="sexo-femenino">Femenino</label>
+
+         <br>
+        <label for="estado-civil">Estado civil</label>
+        <br>
+        <input name="estado-civil" id="estado-civil-soltero" type="radio" value="soltero">
+        <label for="estado-civil-soltero">Soltero</label>
+
+        <input name="estado-civil" id="estado-civil-casado" type="radio" value="casado">
+        <label for="estado-civil-casado">Casado</label>
+
+        <br>
+      <label for="aficiones">Aficiones</label>
+      <br>
+
+         <label for="aficiones-cine">Cine</label>
+         <input name="aficiones[]" id="aficiones-cine" type="checkbox" value="cine">
+
+         <label for="aficiones-literatura">Literatura</label>
+         <input name="aficiones[]" id="aficiones-literatura" type="checkbox" value="literatura">
+
+         <label for="aficiones-tebeos">Tebeos</label>
+         <input name="aficiones[]" id="aficiones-tebeos" type="checkbox" value="tebeos">
+
+         <label for="aficiones-deporte">Deporte</label>
+         <input name="aficiones[]" id="aficiones-deporte" type="checkbox" value="deporte">
+         
+         <label for="aficiones-musica">Musica</label>
+         <input name="aficiones[]" id="aficiones-musica" type="checkbox" value="musica">
+
+         <label for="aficiones-television">Television</label>
+         ç<input name="aficiones[]" id="aficiones-television" type="text" value="television">
+
+          <input type="submit">
+      <input type="reset" value="Borrar todo">
+
+        
+      <br>
+
+
+
+
+
+        
         <!-- TODO: crea los radios name="sexo" (masculino/femenino). -->
         <!-- TODO: crea los radios name="estado-civil" (soltero/casado/otro). -->
         <!-- TODO: crea los checkboxes name="aficiones[]" con los valores pedidos. -->
