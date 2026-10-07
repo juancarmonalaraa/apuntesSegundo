@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+
+    <style>
+        #principio {
+            color: red;
+        }
+
+        .fila {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .fila>label:first-child {
+            width: 280px;
+        }
+
+        .zona-derecha {
+            width: 400px;
+        }
+
+        form {
+            width: 700px;
+            margin: 30px auto;
+            border: 1px solid red;
+            padding: 30px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <form>
+
+        <label id="principio">RESERVA AGENCIA VIAJES</label>
+
+
+        <p class="fila">
+            <label for="destino">DESTINO *</label>
+
+            <select id="destino" name="destino" class="zona-derecha" required>
+                <option value="">Seleccionar ciudad</option>
+                <option value="madrid">Madrid</option>
+                <option value="barcelona">Barcelona</option>
+                <option value="paris">París</option>
+            </select>
+        </p>
+
+
+        <p class="fila">
+            <label for="fecha-salida">FECHA DE SALIDA</label>
+
+            <input type="date" id="fecha-salida" name="fecha-salida" class="zona-derecha">
+        </p>
+
+
+        <p class="fila">
+            <label></label>
+
+            <span class="zona-derecha">
+                <input type="checkbox" id="flexible" name="flexible">
+                <label for="flexible">Soy flexible con la fecha</label>
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label for="numero-adultos">NÚMERO DE ADULTOS *</label>
+
+            <select id="numero-adultos" name="numero-adultos" class="zona-derecha" required>
+                <option value="">Seleccionar adultos</option>
+                <option value="1">1 adulto</option>
+                <option value="2">2 adultos</option>
+                <option value="3">3 adultos</option>
+                <option value="4">4 adultos</option>
+            </select>
+        </p>
+
+
+        <p class="fila">
+            <label></label>
+
+            <span class="zona-derecha">
+                <input type="checkbox" id="ninos" name="ninos">
+                <label for="ninos">Viajamos con niños</label>
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label>EDAD ADULTOS</label>
+
+            <span class="zona-derecha">
+                <input type="radio" id="edad18" name="edad" value="18-30">
+                <label for="edad18">18-30</label>
+
+                <input type="radio" id="edad31" name="edad" value="31-50">
+                <label for="edad31">31-50</label>
+
+                <input type="radio" id="edad50" name="edad" value="50+">
+                <label for="edad50">50+</label>
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label>TIPO DE VIAJE</label>
+
+            <span class="zona-derecha">
+                <input type="checkbox" id="programado" name="programado">
+                <label for="programado">Viaje programado</label>
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label>ACTIVIDADES</label>
+
+            <span class="zona-derecha">
+
+                <input type="checkbox" id="cruceros" name="cruceros">
+                <label for="cruceros">Cruceros en Galápagos</label>
+
+                <br>
+
+                <input type="checkbox" id="combinados" name="combinados">
+                <label for="combinados">Tours combinados, hotel-yate</label>
+
+                <br>
+
+                <input type="checkbox" id="empaquetados" name="empaquetados">
+                <label for="empaquetados">Tours empaquetados</label>
+
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label>TIPO DE ACOMODACIÓN *</label>
+
+            <span class="zona-derecha">
+
+                <input type="radio" id="cinco-estrellas" name="acomodacion" value="5">
+                <label for="cinco-estrellas">5 estrellas</label>
+
+                <input type="radio" id="cuatro-estrellas" name="acomodacion" value="4">
+                <label for="cuatro-estrellas">4 estrellas</label>
+
+                <input type="radio" id="tres-estrellas" name="acomodacion" value="3">
+                <label for="tres-estrellas">3 estrellas</label>
+
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label>OTROS SERVICIOS</label>
+
+            <span class="zona-derecha">
+
+                <input type="checkbox" id="guias" name="guias">
+                <label for="guias">Actividades, guías, información</label>
+
+                <br>
+
+                <input type="checkbox" id="transporte" name="transporte">
+                <label for="transporte">Transporte</label>
+
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label for="viaje">¿CUÁL ES EL VIAJE QUE QUISIERAS?</label>
+
+            <textarea id="viaje" name="viaje" class="zona-derecha"></textarea>
+        </p>
+
+
+        <p class="fila">
+            <label for="nombre">NOMBRE Y APELLIDO *</label>
+
+            <input type="text" id="nombre" name="nombre" class="zona-derecha" required>
+        </p>
+
+
+        <p class="fila">
+            <label for="email">EMAIL *</label>
+
+            <input type="email" id="email" name="email" class="zona-derecha" required>
+        </p>
+
+
+        <p class="fila">
+            <label for="telefono">TELÉFONO</label>
+
+            <input type="tel" id="telefono" name="telefono" class="zona-derecha">
+        </p>
+
+
+        <p class="fila">
+            <label for="ciudad">CIUDAD</label>
+
+            <input type="text" id="ciudad" name="ciudad" class="zona-derecha">
+        </p>
+
+
+        <p class="fila">
+            <label for="pais">PAÍS DE RESIDENCIA</label>
+
+            <input type="text" id="pais" name="pais" class="zona-derecha">
+        </p>
+
+
+        <p class="fila">
+            <label>
+                Estoy de acuerdo con los
+                Términos de uso y políticas
+                de privacidad *
+            </label>
+
+            <span class="zona-derecha">
+                <input type="checkbox" id="privacidad" name="privacidad" required>
+                <label for="privacidad">Estoy de acuerdo</label>
+            </span>
+        </p>
+
+
+        <p class="fila">
+            <label></label>
+
+            <span class="zona-derecha">
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Limpiar">
+            </span>
+        </p>
+
+    </form>
+
+</body>
+
+</html>
