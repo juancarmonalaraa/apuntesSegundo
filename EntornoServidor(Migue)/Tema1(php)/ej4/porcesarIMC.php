@@ -50,6 +50,7 @@ $imc = $peso / ($alturaMetros * $alturaMetros);
 //Calcular la estimación didáctica de pulsaciones máximas
 $pulsacionesMaximas = 220 - (int)$edad;
 
+$nombreSeguro = htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8');
 
 // Mostrar el resultado.
 echo '<!doctype html>';
@@ -61,7 +62,7 @@ echo '</head>';
 echo '<body>';
 
 echo '<h1>'
-    . mostrar(primeraMayuscula($nombre))
+    . mostrar(primeraMayuscula($nombreSeguro))
     . '</h1>';
 
 echo '<p>Edad: ' . mostrar($edad) . '</p>';
