@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: wrap;
+
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: salmon;
+            border: solid 10px white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            font-size: 5rem;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 0 10px #000000;
+            overflow: hidden;
+
+        }
+
+        div::before {
+            content: "+";
+            position: relative;
+            top: 100%;
+        }
+
+        div:hover::before {
+            top: 0%;
+        }
+
+
+        * {
+            transition: all .5s;
+            /* transition: all .5s; */
+        }
+
+        #c1 {
+            background: url("https://picsum.photos/400") center center no-repeat;
+        }
+
+        #c1:hover {
+            background-position: 50% 0%;
+        }
+
+        div:nth-child(2) {
+            font-size: 1rem;
+            top: 100%;
+            
+        }
+        #c2:hover{
+            top: 0%;
+            background-color: aqua;
+        }
+
+
+         div:nth-child(3) {
+            font-size: 1.2rem;
+        }
+        div:nth-child(3):hover {
+            font-size: 1rem;
+            background-color: blueviolet;
+            
+        }
+
+
+
+
+
+
+
+        #c2 {
+            left: 100%;
+        }
+
+        #c2:hover p {}
+    </style>
+</head>
+
+<body>
+    <div id="c1"></div>
+    <div id="c2">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur consequatur eaque mollitia autem. Error
+            cupiditate provident ex. Facilis sint consequatur quidem, quae aut similique temporibus officia? Quia natus
+            dolorem eius?</p>
+    </div>
+    <div id="c3">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ex quas quam sequi saepe ut laboriosam nam
+            nesciunt sit natus laborum aliquid atque corporis, quae iure! Consequatur ex vero itaque.</p>
+    </div>
+    <div id="c4"></div>
+    <div id="c5"></div>
+    <div id="c6"></div>
+    <div id="c7"></div>
+    <div id="c8"></div>
+    <div id="c9"></div>
