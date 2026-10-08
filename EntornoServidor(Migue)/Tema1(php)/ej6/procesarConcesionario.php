@@ -3,6 +3,10 @@ require_once __DIR__ . '/componentes.php'; // Datos iniciales de opciones, preci
 
 // EJERCICIO 06.
 // TODO 1: comprueba el método POST y valida las cinco opciones obligatorias.
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    http_response_code(405);
+    exit('Envía el formulario mediante POST.');
+}
 // TODO 2: recoge los accesorios seleccionados (pueden ser cero) y la cantidad (1–5).
 // TODO 3: calcula el precio unitario SIN IVA a partir de los precios proporcionados.
 // TODO 4: multiplica por el número de vehículos y aplica el descuento, si es válido.
