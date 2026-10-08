@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PHP y formularios: el juego</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --px: 'Press Start 2P', ui-monospace, Menlo, Consolas, monospace;
+      --bg: #0a0c18;
+      --card: #12162b;
+      --ink: #e9ecff;
+      --muted: #939cc9;
+      --line: #2a3160;
+      --brand: #00e5ff;
+      --bl: #10243b;
+      --ok: #39ff88;
+      --okl: #0f2b20;
+      --ko: #ff4d6d;
+      --kol: #34121c;
+      --warn: #ffd23f;
+      --warnl: #2d2710;
+      --cb: #070913;
+      --tag: #ff9ecb;
+      --attr: #ffd479;
+      --str: #9be3a4;
+      --com: #8a93b8;
+      --var: #7df3ff
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      cursor: pointer
+    }
+
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      background: var(--bl);
+      color: var(--var);
+      padding: .08em .38em;
+      border-radius: 5px;
+      font-size: .92em
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: var(--card);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 16px
+    }
+
+    .logo {
+      font: 12px var(--px);
+      color: var(--brand);
+      margin-right: auto;
+      background: none;
+      border: 0;
+      padding: 0
+    }
+
+    .pill {
+      background: var(--warnl);
+      border: 1px solid var(--warn);
+      border-radius: 99px;
+      padding: 4px 12px;
+      font-weight: 700;
+      font-size: .9rem
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-weight: 600
+    }
+
+    .btn:hover {
+      border-color: var(--brand)
+    }
+
+    .btn.primary {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #04101a
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 22px 16px 80px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 0 18px rgba(0, 229, 255, .12)
+    }
+
+    h1 {
+      font: clamp(16px, 3.4vw, 26px)/1.5 var(--px);
+      margin: .2em 0 .5em;
+      color: var(--brand)
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin: .1em 0 .5em;
+      line-height: 1.25
+    }
+
+    .hero {
+      border: 2px solid var(--brand);
+      border-radius: 8px;
+      padding: 26px;
+      background: linear-gradient(135deg, #0d1a30, #12162b)
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 20px
+    }
+
+    .lvl {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .lvl:hover {
+      border-color: var(--brand);
+      transform: translateY(-3px)
+    }
+
+    .lvl .ic {
+      align-self: flex-start;
+      font: 700 .9rem ui-monospace, Menlo, monospace;
+      background: var(--bl);
+      color: var(--var);
+      padding: 2px 8px;
+      border-radius: 5px
+    }
+
+    .lvl .d {
+      color: var(--muted);
+      font-size: .92rem;
+      flex: 1
+    }
+
+    .stars {
+      color: var(--warn);
+      letter-spacing: 2px
+    }
+
+    .off {
+      opacity: .25
+    }
+
+    .prog {
+      height: 10px;
+      background: var(--line);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 14px
+    }
+
+    .prog i {
+      display: block;
+      height: 100%;
+      background: var(--brand)
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 6px
+    }
+
+    .kind {
+      display: inline-block;
+      background: var(--bl);
+      color: var(--var);
+      font: 9px var(--px);
+      padding: 6px 10px;
+      border-radius: 99px;
+      margin-bottom: 10px
+    }
+
+    .foot {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 18px
+    }
+
+    .fb {
+      margin-top: 16px;
+      border-radius: 8px;
+      padding: 12px 16px;
+      border: 1px solid
+    }
+
+    .fb.ok {
+      background: var(--okl);
+      border-color: var(--ok)
+    }
+
+    .fb.ko {
+      background: var(--kol);
+      border-color: var(--ko)
+    }
+
+    .fb.info {
+      background: var(--warnl);
+      border-color: var(--warn)
+    }
+
+    .fb ul {
+      margin: .3em 0 0;
+      padding-left: 1.2em
+    }
+
+    pre.code,
+    .fill {
+      margin: 12px 0;
+      background: var(--cb);
+      color: #e8ecff;
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow: auto;
+      font: 13.5px/1.6 ui-monospace, Menlo, Consolas, monospace;
+      tab-size: 2
+    }
+
+    .fill {
+      white-space: pre-wrap;
+      line-height: 2.1
+    }
+
+    pre.code code {
+      background: none;
+      color: inherit;
+      padding: 0
+    }
+
+    .t {
+      color: var(--tag)
+    }
+
+    .a {
+      color: var(--attr)
+    }
+
+    .s {
+      color: var(--str)
+    }
+
+    .c {
+      color: var(--com);
+      font-style: italic
+    }
+
+    .v {
+      color: var(--var)
+    }
+
+    i.t,
+    i.a,
+    i.s,
+    i.c,
+    i.v {
+      font-style: normal
+    }
+
+    i.c {
+      font-style: italic
+    }
+
+    .fill input {
+      font: inherit;
+      background: #fff;
+      color: #1f2437;
+      border: 2px solid var(--attr);
+      border-radius: 6px;
+      padding: 0 6px;
+      margin: 0 2px;
+      text-align: center
+    }
+
+    .fill input.ok {
+      border-color: var(--ok);
+      background: #d9f7e5
+    }
+
+    .fill input.ko {
+      border-color: var(--ko);
+      background: #ffe0e5
+    }
+
+    table.tb {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0;
+      font-size: .95rem
+    }
+
+    .tb th,
+    .tb td {
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    .tb th {
+      background: var(--bl);
+      width: 40%;
+      font: 600 .88rem ui-monospace, Menlo, monospace;
+      color: var(--var)
+    }
+
+    .tip {
+      background: var(--warnl);
+      border-left: 5px solid var(--warn);
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin: 12px 0
+    }
+
+    .opts {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px
+    }
+
+    .opt {
+      text-align: left;
+      border: 2px solid var(--line);
+      background: var(--card);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px
+    }
+
+    .opt:hover {
+      border-color: var(--brand)
+    }
+
+    .opt .k {
+      flex: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--bl);
+      color: var(--var);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: .85rem
+    }
+
+    .opt.ok,
+    .chip.ok {
+      border-color: var(--ok);
+      background: var(--okl);
+      pointer-events: none
+    }
+
+    .opt.ko,
+    .chip.ko {
+      border-color: var(--ko);
+      background: var(--kol);
+      pointer-events: none
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      margin-top: 12px
+    }
+
+    .col {
+      display: grid;
+      gap: 10px;
+      align-content: start
+    }
+
+    .chip {
+      border: 2px solid var(--line);
+      background: var(--card);
+      border-radius: 6px;
+      padding: 10px 12px;
+      text-align: left;
+      width: 100%
+    }
+
+    .chip:hover {
+      border-color: var(--brand)
+    }
+
+    .chip.sel {
+      border-color: var(--brand);
+      background: var(--bl)
+    }
+
+    .bugs {
+      background: var(--cb);
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      display: grid;
+      gap: 2px
+    }
+
+    .bl {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 8px;
+      text-align: left;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      color: #e8ecff;
+      padding: 3px 8px;
+      font: 13px/1.6 ui-monospace, Menlo, monospace;
+      white-space: pre
+    }
+
+    .bl:hover {
+      background: rgba(255, 255, 255, .07)
+    }
+
+    .bl .n {
+      color: var(--com);
+      text-align: right
+    }
+
+    .bl.sel {
+      border-color: var(--warn);
+      background: rgba(242, 169, 0, .18)
+    }
+
+    .bl.ok {
+      border-color: var(--ok);
+      background: rgba(76, 214, 138, .18)
+    }
+
+    .bl.ko {
+      border-color: var(--ko);
+      background: rgba(255, 107, 129, .2)
+    }
+
+    textarea.ed {
+      width: 100%;
+      min-height: 380px;
+      resize: vertical;
+      background: var(--cb);
+      color: #e8ecff;
+      border: 0;
+      border-radius: 8px;
+      padding: 14px;
+      font: 13.5px/1.55 ui-monospace, Menlo, monospace;
+      tab-size: 2
+    }
+
+    .checks {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: grid;
+      gap: 6px
+    }
+
+    .checks li {
+      display: flex;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--line)
+    }
+
+    .checks li.ok {
+      background: var(--okl);
+      border-color: var(--ok)
+    }
+
+    .checks li.ko {
+      background: var(--kol);
+      border-color: var(--ko)
+    }
+
+    .cheat {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin-top: 16px
+    }
+
+    .cheat .card {
+      padding: 16px;
+      min-width: 0
+    }
+
+    .cheat h3 {
+      font: 11px/1.6 var(--px);
+      color: var(--brand);
+      margin: .2em 0 .6em
+    }
+
+    .res {
+      text-align: center
+    }
+
+    .res .big {
+      font-size: 3.5rem
+    }
+
+    .res .stars {
+      font-size: 2.2rem
+    }
+
+    @media(max-width:620px) {
+      .cols {
+        gap: 8px
+      }
+    }
+
+    @media(prefers-reduced-motion:no-preference) {
+
+      .opt.ko,
+      .chip.ko {
+        animation: sh .35s
+      }
+
+      @keyframes sh {
+        20% {
+          transform: translateX(-6px)
+        }
+
+        60% {
+          transform: translateX(6px)
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header><button class="logo" id="home">PHP FORM QUEST</button><span class="pill" id="xp">Puntos: 0</span><button
+      class="btn" id="cheat">Chuletario</button></header>
+  <main id="main"></main>
+  <script>
+    const $ = s => document.querySelector(s);
+    const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const md = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    function el(t, a, ...k) { const e = document.createElement(t); for (const x in a || {}) { const v = a[x]; if (x === 'class') e.className = v; else if (x === 'html') e.innerHTML = v; else if (x.startsWith('on')) e[x] = v; else e.setAttribute(x, v) } k.forEach(c => e.append(c)); return e }
+    const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]] } return a };
+    function hl(s) { return esc(s).replace(/(\/\/.*|#.*|&lt;!--[\s\S]*?--&gt;)|("[^"]*"|'[^']*')|(\$\w+)|(&lt;\/?[\w?]+)/g, (m, c, str, v, t) => c ? `<i class="c">${c}</i>` : str ? `<i class="s">${str}</i>` : v ? `<i class="v">${v}</i>` : `<i class="t">${t}</i>`) }
+    const code = s => el('pre', { class: 'code', html: `<code>${hl(s)}</code>` });
+    const tbl = r => el('table', { class: 'tb' }, ...r.map(x => el('tr', { html: `<th>${md(x[0])}</th><td>${md(x[1])}</td>` })));
+    const C = (re, n = 1) => s => (s.match(new RegExp(re.source, 'g')) || []).length >= n;
+
+    /* ===== NIVELES ===== */
+    const LV = [
+      {
+        icon: '$_POST', title: 'Recibir datos', desc: 'Cómo llegan los campos del formulario a PHP.', steps: [
+          {
+            t: 'learn', title: 'Del formulario a PHP', b: [
+              ['p', 'Cuando se envía un formulario, el navegador manda cada campo como pareja **name=valor**. PHP los recoge en arrays especiales llamados **superglobales**.'],
+              ['code', `<form action="procesar.php" method="post">
+  <input type="text" name="coche">
+</form>
+
+<?php
+// procesar.php
+$coche = $_POST["coche"];
+echo "Elegiste: " . $coche;
+?>`],
+              ['table', [['$_POST', 'Datos de un form con method="post"'], ['$_GET', 'Datos de method="get" (van en la URL)'], ['$_SERVER["REQUEST_METHOD"]', '"POST" o "GET": cómo llegó la petición'], ['isset($x)', '¿Existe y no es null?'], ['echo', 'Escribe texto en la página']]],
+              ['tip', 'Un campo **sin `name` no llega** a PHP. Y los `.php` hay que abrirlos desde un servidor (`http://localhost/...`), no con doble clic.']]
+          },
+          { t: 'quiz', q: '¿Qué array recibe los datos de un formulario con `method="post"`?', o: ['$_POST', '$_GET', '$_FORM', '$post'], a: 0, why: '`$_POST` (en mayúsculas). `$_GET` es para method="get".' },
+          { t: 'quiz', q: 'El campo es `<input name="modelo">`. ¿Cómo lo lees en PHP?', o: ['$_POST["modelo"]', '$_POST[modelo]', '$POST["modelo"]', '$_FORM["modelo"]'], a: 0, why: 'La clave es el valor de `name`, entre comillas.' },
+          { t: 'match', q: 'Une cada elemento con su función.', p: [['$_GET', 'Datos enviados por la URL'], ['$_POST', 'Datos en el cuerpo de la petición'], ['isset($x)', '¿Existe y no es null?'], ['echo', 'Escribe texto en la página']] },
+          {
+            t: 'fill', q: 'Completa el código.', c: `<?php
+$nombre = ___["nombre"];
+if (___($_POST["email"])) {
+  ___ "Hola " . $nombre;
+}
+?>`, a: ['$_POST', 'isset', 'echo|print'], why: '`$_POST`, `isset()` y `echo`.'
+          },
+          { t: 'bugs', q: 'Hay **3 errores**. Marca las líneas incorrectas.', l: [['<?php', null], ['$nombre = $_POST[nombre];', 'La clave va entre comillas: `$_POST["nombre"]`.'], ['$edad = $_post["edad"];', 'Las superglobales van en MAYÚSCULAS: `$_POST`.'], ['echo "Hola " + $nombre;', 'En PHP se concatena con punto, no con `+`.'], ['echo "Edad: " . $edad;', null], ['?>', null]] }]
+      },
+      {
+        icon: '$var', title: 'Variables y operadores', desc: 'Cálculos de precio, IVA y concatenación.', steps: [
+          {
+            t: 'learn', title: 'Variables y cálculos', b: [
+              ['p', 'Las variables empiezan por `$`, no se declaran con tipo y distinguen mayúsculas. Con **comillas dobles** se interpretan variables; con simples, no.'],
+              ['code', `$precio = 20000;
+$iva = 0.21;
+$total = $precio * (1 + $iva);   // 24200
+echo "Total: $total €";
+echo 'Total: ' . $total . ' €';  // con punto`],
+              ['table', [['+ - * /', 'Suma, resta, multiplicación, división'], ['%', 'Resto de la división'], ['**', 'Potencia'], ['.', 'Concatenar texto'], ['.=  +=  -=', 'Operar y asignar'], ['++  --', 'Sumar / restar 1']]],
+              ['tip', 'Lo que llega de un formulario es **texto**. Conviértelo con `floatval()` o `intval()` antes de calcular.']]
+          },
+          { t: 'quiz', q: '¿Cómo añades un 21% de IVA a `$p`?', o: ['$p * 1.21', '$p + 1.21', '$p * 21', '$p / 1.21'], a: 0, why: 'Multiplicar por 1.21 suma el 21%.' },
+          { t: 'quiz', fixed: 1, q: 'Verdadero o falso: `echo \'Total: $t\';` (comillas simples) muestra el valor de `$t`.', o: ['Verdadero', 'Falso'], a: 1, why: 'Falso. Con comillas simples se escribe literalmente `$t`.' },
+          { t: 'match', q: 'Une cada operador con su función.', p: [['.', 'Concatenar texto'], ['%', 'Resto de la división'], ['.=', 'Añadir texto a una variable'], ['**', 'Potencia']] },
+          {
+            t: 'fill', q: 'Calcula un descuento del 10%.', c: `$precio = 1000;
+$desc = 0.10;
+$final = $precio - $precio ___ $desc;
+echo "Final: " ___ $final;
+$resto = 17 ___ 5;   // 2`, a: ['*', '.', '%'], why: 'Descuento = precio * porcentaje; `.` concatena; `%` es el resto.'
+          },
+          { t: 'bugs', q: 'Hay **3 errores**.', l: [[`$precio = $_POST["precio"];`, null], ['$iva = precio * 0.21;', 'Falta el `$`: `$precio`.'], ['$total = $precio + $iva', 'Falta el `;` final.'], ['echo "Total: " + $total;', 'Se concatena con `.`, no con `+`.'], ['echo "Gracias";', null]] }]
+      },
+      {
+        icon: 'if', title: 'Decisiones y descuentos', desc: 'if, elseif, else, switch y operadores lógicos.', steps: [
+          {
+            t: 'learn', title: 'Tomar decisiones', b: [
+              ['code', `if ($anios > 5) {
+  $desc = 0.15;
+} elseif ($anios > 2) {
+  $desc = 0.10;
+} else {
+  $desc = 0;
+}
+
+switch ($color) {
+  case "rojo": $extra = 300; break;
+  default:     $extra = 0;
+}
+$msg = ($edad >= 18) ? "Mayor" : "Menor";`],
+              ['table', [['==  ===', 'Igual (valor) / idéntico (valor y tipo)'], ['!=  !==', 'Distinto'], ['> < >= <=', 'Comparaciones'], ['&&  ||  !', 'Y, O, NO']]],
+              ['tip', '`=` **asigna** y `==` **compara**. Confundirlos es el error más típico.']]
+          },
+          { t: 'quiz', q: '¿Qué operador compara valores?', o: ['==', '=', '=>', '.='], a: 0, why: '`==` compara. `=` asigna.' },
+          { t: 'quiz', q: 'Descuento si `$precio` supera 10000 **y** `$financia` es verdadero:', o: ['if ($precio > 10000 && $financia)', 'if ($precio > 10000 || $financia)', 'if ($precio = 10000 && $financia)', 'if ($precio > 10000 and or $financia)'], a: 0, why: '`&&` exige que se cumplan las dos condiciones.' },
+          { t: 'quiz', q: '¿Qué muestra?  `$n=7; echo $n % 2 == 0 ? "par" : "impar";`', o: ['impar', 'par', '7', 'Error'], a: 0, why: '7 % 2 = 1, no es 0 → "impar".' },
+          {
+            t: 'fill', q: 'Completa las estructuras.', c: `if ($edad ___ 18) {
+  echo "Mayor";
+} ___ {
+  echo "Menor";
+}
+switch ($c) {
+  ___ "rojo": $x = 1; break;
+  ___: $x = 0;
+}`, a: ['>=', 'else', 'case', 'default'], why: '`>=`, `else`, `case` y `default`.'
+          },
+          { t: 'match', q: 'Une operadores y significado.', p: [['==', 'Igual (valor)'], ['===', 'Idéntico (valor y tipo)'], ['&&', 'Y lógico'], ['||', 'O lógico']] },
+          { t: 'bugs', q: 'Hay **2 errores**.', l: [['if ($tipo = "electrico") {', 'Con un solo `=` asignas. Usa `==` o `===`.'], ['  $desc = 0.20;', null], ['} elseif ($tipo == "hibrido") {', null], ['  $desc = 0.10;', null], ['} else ($tipo == "otro") {', '`else` no lleva condición.'], ['  $desc = 0;', null], ['}', null]] }]
+      },
+      {
+        icon: 'trim()', title: 'Validar y limpiar', desc: 'trim, empty, is_numeric, filter_var y htmlspecialchars.', steps: [
+          {
+            t: 'learn', title: 'Nunca te fíes del usuario', b: [
+              ['code', `$nombre = trim($_POST["nombre"] ?? "");
+$errores = [];
+if ($nombre === "") {
+  $errores[] = "Nombre obligatorio";
+}
+if (!is_numeric($_POST["precio"] ?? "")) {
+  $errores[] = "Precio no válido";
+}
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  $errores[] = "Email no válido";
+}
+echo htmlspecialchars($nombre);`],
+              ['table', [['trim()', 'Quita espacios de los extremos'], ['empty($x)', 'Vacío: "", 0, "0", null, false, []'], ['is_numeric($x)', '¿Es número (o texto numérico)?'], ['intval() / floatval()', 'Convierten a entero / decimal'], ['htmlspecialchars()', 'Escapa < > & " al mostrar'], ['$a ?? "x"', 'Valor por defecto si no existe']]],
+              ['tip', '`required` y `min` del HTML se saltan fácilmente: **valida siempre en PHP**.']]
+          },
+          { t: 'quiz', q: '¿Qué función valida un email?', o: ['filter_var($e, FILTER_VALIDATE_EMAIL)', 'is_email($e)', 'trim($e)', 'strlen($e)'], a: 0, why: '`filter_var` con `FILTER_VALIDATE_EMAIL`.' },
+          { t: 'quiz', q: '¿Para qué sirve `htmlspecialchars()` al mostrar datos?', o: ['Evitar que el usuario inyecte HTML o JavaScript', 'Poner el texto en mayúsculas', 'Quitar espacios', 'Convertir a número'], a: 0, why: 'Evita ataques XSS al imprimir lo que escribió el usuario.' },
+          { t: 'quiz', fixed: 1, q: 'Verdadero o falso: `empty("0")` devuelve `true`.', o: ['Verdadero', 'Falso'], a: 0, why: 'Verdadero. Ojo: el texto "0" también cuenta como vacío.' },
+          {
+            t: 'fill', q: 'Limpia y valida.', c: `$n = ___($_POST["nombre"]);
+$p = ___($_POST["precio"]);
+if (___($n)) { $errores[] = "Falta nombre"; }
+echo ___($n);`, a: ['trim', 'floatval', 'empty', 'htmlspecialchars'], why: '`trim`, `floatval`, `empty` y `htmlspecialchars`.'
+          },
+          { t: 'match', q: 'Une función y utilidad.', p: [['trim()', 'Quita espacios al inicio y final'], ['intval()', 'Convierte a entero'], ['is_numeric()', '¿Es un número?'], ['htmlspecialchars()', 'Escapa HTML al mostrar']] },
+          { t: 'bugs', q: 'Hay **3 errores**.', l: [['$email = $_POST["email"];', null], ['if (empty($email) {', 'Falta cerrar el paréntesis: `if (empty($email)) {`.'], ['  $errores[] = "Email vacío";', null], ['}', null], ['echo "Hola " . $email;', 'Falta `htmlspecialchars($email)`.'], ['$edad = intval($_POST["edad"])', 'Falta el `;` final.']] }]
+      },
+      {
+        icon: '[ ]', title: 'Checkbox, select y arrays', desc: 'extras[], isset, foreach, count e implode.', steps: [
+          {
+            t: 'learn', title: 'Varios valores a la vez', b: [
+              ['p', 'Un checkbox **sin marcar no se envía**: se detecta con `isset`. Para varios checkbox con el mismo grupo, usa `name="extras[]"` y llegará un **array**.'],
+              ['code', `<input type="checkbox" name="extras[]" value="gps">
+<input type="checkbox" name="extras[]" value="techo">
+<input type="checkbox" name="financiar" value="si">
+
+<?php
+$extras = $_POST["extras"] ?? [];
+$financiar = isset($_POST["financiar"]);
+$tarifa = ["gps" => 500, "techo" => 900];
+$suma = 0;
+foreach ($extras as $e) {
+  $suma += $tarifa[$e] ?? 0;
+}
+echo count($extras) . " extras: " . implode(", ", $extras);
+?>`],
+              ['table', [['foreach ($a as $x)', 'Recorre un array'], ['count($a)', 'Número de elementos'], ['implode(", ", $a)', 'Une el array en un texto'], ['in_array($x, $a)', '¿Está $x en el array?'], ['["k" => "v"]', 'Array asociativo (clave → valor)']]]]
+          },
+          { t: 'quiz', q: '¿Qué `name` usas para varios checkbox del mismo grupo?', o: ['extras[]', 'extras', 'extras()', 'extras{}'], a: 0, why: 'Los corchetes hacen que PHP reciba un array.' },
+          { t: 'quiz', q: 'Un checkbox `financiar` no está marcado. ¿Qué pasa en `$_POST`?', o: ['La clave no existe', 'Vale ""', 'Vale false', 'Vale 0'], a: 0, why: 'No se envía nada; por eso se usa `isset($_POST["financiar"])`.' },
+          {
+            t: 'fill', q: 'Completa.', c: `foreach ($extras ___ $e) {
+  $suma += $tarifa[$e];
+}
+echo ___(", ", $extras);
+$ok = ___($_POST["financiar"]);`, a: ['as', 'implode', 'isset'], why: '`as`, `implode` e `isset`.'
+          },
+          { t: 'match', q: 'Une cada pieza con su función.', p: [['name="x[]"', 'Llega como array'], ['isset()', 'Detecta un checkbox marcado'], ['foreach', 'Recorre un array'], ['implode()', 'Une un array en un texto']] },
+          { t: 'bugs', q: 'Hay **2 errores**.', l: [['$extras = $_POST["extras"];', 'Si no marcan ninguno la clave no existe: `$_POST["extras"] ?? []`.'], ['$suma = 0;', null], ['foreach ($extras in $e) {', 'La sintaxis es `foreach ($extras as $e)`.'], ['  $suma += $tarifa[$e];', null], ['}', null]] }]
+      },
+      {
+        icon: 'BOSS', title: 'Jefe final: configurador', desc: 'Escribe un procesar.php completo.', steps: [
+          { t: 'learn', title: 'Reto', b: [['p', 'Un formulario envía `coche`, `precio`, `extras[]` y `financiar`. Escribe el PHP que limpie, valide, aplique un descuento, sume extras, calcule el IVA y muestre el resultado.'], ['tip', 'Cada requisito se marca en verde cuando tu código lo cumple. Puedes ver una solución de ejemplo.']] },
+          {
+            t: 'lab', q: 'Laboratorio PHP', start: `<?php
+// procesar.php
+// Campos: coche, precio, extras[] (checkbox), financiar (checkbox)
+
+?>`, sol: `<?php
+$coche = trim($_POST["coche"] ?? "");
+$precio = floatval($_POST["precio"] ?? 0);
+$extras = $_POST["extras"] ?? [];
+$financiar = isset($_POST["financiar"]);
+$tarifa = ["gps" => 500, "techo" => 900];
+
+if ($coche === "" || $precio <= 0) {
+  echo "Faltan datos";
+  exit;
+}
+
+$base = $precio;
+foreach ($extras as $e) {
+  $base += $tarifa[$e] ?? 0;
+}
+if ($base > 20000) {
+  $base = $base * 0.95;
+}
+
+$total = $base * 1.21;
+echo "<p>" . htmlspecialchars($coche) . "</p>";
+echo "<p>Total: " . number_format($total, 2, ",", ".") . " €</p>";
+?>`, checks: [
+              ['Lee 3 o más campos con `$_POST[...]`', C(/\$_POST\s*\[/, 3)],
+              ['Limpia texto con `trim()`', C(/trim\s*\(/)],
+              ['Convierte el precio con `floatval()` o `(float)`', s => /floatval\s*\(|\(float\)/.test(s)],
+              ['Valida con `empty()`, `is_numeric()` o `isset()`', s => /empty\s*\(|is_numeric\s*\(|isset\s*\(/.test(s)],
+              ['Decide un descuento con `if`', C(/\bif\s*\(/)],
+              ['Recorre los extras con `foreach`', C(/foreach\s*\(/)],
+              ['Calcula el IVA (`* 1.21`, `* 0.21` o `$iva`)', s => /\*\s*1\.21|\*\s*0?\.21|\$iva/i.test(s)],
+              ['Formatea con `number_format()`', C(/number_format\s*\(/)],
+              ['Escapa la salida con `htmlspecialchars()`', C(/htmlspecialchars\s*\(/)],
+              ['Muestra el resultado con `echo`', C(/\becho\b/)]]
+          }]
+      }
+    ];
+
+    /* ===== CHULETARIO ===== */
+    const CH = [
+      ['Formulario → PHP', [['method="post"', 'Datos en $_POST (ocultos)'], ['method="get"', 'Datos en $_GET (en la URL)'], ['name="x"', 'Clave: $_POST["x"]'], ['name="x[]"', 'Llega como array'], ['checkbox sin marcar', 'No se envía: usa isset()'], ['radio / select', 'Un solo valor'], ['select multiple name="x[]"', 'Array de valores'], ['disabled', 'No se envía'], ['action="a.php"', 'Archivo que procesa']]],
+      ['Superglobales', [['$_POST', 'Datos de method="post"'], ['$_GET', 'Datos de la URL'], ['$_REQUEST', 'POST + GET + cookies'], ['$_SERVER["REQUEST_METHOD"]', '"POST" o "GET"'], ['$_FILES', 'Archivos subidos'], ['$_SESSION / $_COOKIE', 'Sesión y cookies']]],
+      ['Variables y tipos', [['$x = 5;', 'Empieza por $; distingue mayúsculas'], ['int float string bool', 'Tipos escalares'], ['array / null', 'Colección / sin valor'], ['gettype($x)  var_dump($x)', 'Ver tipo y contenido'], ['const IVA = 0.21;', 'Constante (sin $)'], ['(int) (float) (string)', 'Conversión de tipo'], ['unset($x)', 'Borra la variable']]],
+      ['Operadores', [['+ - * / % **', 'Aritméticos'], ['=  +=  -=  *=  .=', 'Asignación'], ['.', 'Concatenar'], ['== === != !==', 'Igualdad y desigualdad'], ['< > <= >= <=>', 'Comparación'], ['&& || !', 'Lógicos (and, or)'], ['++  --', 'Incremento'], ['??', 'Valor si no existe o es null'], ['? :', 'Ternario']]],
+      ['Condicionales', null, `if ($a > 5) {
+  ...
+} elseif ($a > 2) {
+  ...
+} else {
+  ...
+}
+switch ($x) {
+  case "a": ...; break;
+  default: ...;
+}
+$r = ($n >= 5) ? "Aprobado" : "Suspenso";`],
+      ['Bucles', null, `for ($i = 0; $i < 10; $i++) { ... }
+while ($i < 10) { ...; $i++; }
+foreach ($arr as $v) { ... }
+foreach ($arr as $k => $v) { ... }
+// break: sale  |  continue: salta a la siguiente`],
+      ['Arrays', [['[1, 2, 3]', 'Array indexado'], ['["k" => "v"]', 'Asociativo'], ['$a[] = 4;', 'Añadir al final'], ['count($a)', 'Nº de elementos'], ['in_array($x, $a)', '¿Contiene?'], ['array_key_exists("k",$a)', '¿Existe la clave?'], ['array_sum($a)', 'Suma'], ['implode(",", $a)', 'Array → texto'], ['explode(",", $s)', 'Texto → array'], ['sort($a)  rsort($a)', 'Ordenar']]],
+      ['Texto', [['strlen($s)', 'Longitud'], ['strtoupper / strtolower', 'Mayús. / minús.'], ['ucfirst($s)', 'Primera en mayúscula'], ['trim / ltrim / rtrim', 'Quita espacios'], ['str_replace("a","b",$s)', 'Reemplazar'], ['substr($s, 0, 3)', 'Trozo'], ['strpos($s, "x")', 'Posición (o false)'], ['str_contains($s, "x")', '¿Contiene?'], ['"Hola $n"  /  \'Hola $n\'', 'Interpola / no interpola'], ['"{$a["k"]}"', 'Array dentro de comillas']]],
+      ['Números', [['intval() floatval()', 'A entero / decimal'], ['round($x, 2)', 'Redondear'], ['floor() ceil()', 'Hacia abajo / arriba'], ['abs() max() min()', 'Absoluto / máx. / mín.'], ['number_format($n,2,",",".")', '1.234,56'], ['is_numeric($x)', '¿Es numérico?'], ['intdiv(7, 2)', 'División entera'], ['rand(1, 10)', 'Aleatorio']]],
+      ['Fórmulas de precio', [['Descuento d (0.10)', '$base = $p * (1 - $d);'], ['Descuento en %', '$base = $p - $p * $d / 100;'], ['IVA 21%', '$total = $base * 1.21;'], ['Solo el IVA', '$iva = $base * 0.21;'], ['Orden recomendado', 'descuento → extras → IVA']]],
+      ['Validación', [['isset($x)', 'Existe y no es null'], ['empty($x)', '"", 0, "0", null, false, []'], ['is_numeric($x)', 'Número válido'], ['$x > 0', 'Rango'], ['filter_var($e, FILTER_VALIDATE_EMAIL)', 'Email'], ['filter_var($n, FILTER_VALIDATE_INT)', 'Entero'], ['preg_match("/^\\d{9}$/", $t)', 'Patrón (9 cifras)'], ['in_array($v, $permitidos, true)', 'Valor permitido'], ['strlen($p) >= 8', 'Longitud mínima']]],
+      ['Seguridad y salida', [['htmlspecialchars($x)', 'Siempre al mostrar datos del usuario'], ['trim($x)', 'Limpia al recibir'], ['Validar en servidor', 'required y min se pueden saltar'], ['exit; / die("msg");', 'Detiene el script'], ['header("Location: a.php");', 'Redirige (antes de cualquier echo)'], ['include / require', 'Incluir otro archivo']]],
+      ['Funciones', null, `function calcular($base, $iva = 0.21) {
+  return $base * (1 + $iva);
+}
+echo calcular(1000);        // 1210
+echo calcular(1000, 0.10);  // 1100`],
+      ['Errores típicos', [['Parse error', 'Falta ; ) } o comillas (mira la línea o la anterior)'], ['Undefined array key', 'Clave inexistente: revisa name o usa isset / ??'], ['Undefined variable', 'Variable sin definir o mal escrita'], ['Se ve el código PHP', 'Sin servidor: usa http://localhost/...'], ['Pantalla en blanco', 'Error oculto: activa display_errors'], ['Division by zero', 'Comprueba que el divisor no sea 0'], ['Headers already sent', 'Había salida antes de header()'], ['= en lugar de ==', 'En un if asigna en vez de comparar']]],
+      ['Plantilla procesar.php', null, `<?php
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+  exit("Acceso no válido");
+}
+$errores = [];
+$nombre = trim($_POST["nombre"] ?? "");
+$precio = floatval($_POST["precio"] ?? 0);
+$extras = $_POST["extras"] ?? [];
+
+if ($nombre === "") { $errores[] = "Falta el nombre"; }
+if ($precio <= 0)   { $errores[] = "Precio no válido"; }
+
+if ($errores) {
+  foreach ($errores as $e) { echo "<p>" . htmlspecialchars($e) . "</p>"; }
+} else {
+  $total = $precio * 1.21;
+  echo "Total: " . number_format($total, 2, ",", ".") . " €";
+}
+?>`]
+    ];
+
+    /* ===== ESTADO Y VISTAS ===== */
+    let best = {}, cur = null;
+    const KIND = { learn: 'Aprende', quiz: 'Pregunta', match: 'Emparejar', fill: 'Completa el código', bugs: 'Caza-errores', lab: 'Laboratorio' };
+    const q = L => L.steps.filter(s => s.t !== 'learn').length;
+    const total = () => Object.values(best).reduce((a, b) => a + b, 0);
+    const stars = (n) => `<span class="stars">${[0, 1, 2].map(i => `<span class="${i < n ? '' : 'off'}">★</span>`).join('')}</span>`;
+    const starsFor = (p, m) => { const r = p / m; return r >= .9 ? 3 : r >= .6 ? 2 : p > 0 ? 1 : 0 };
+    const main = $('#main'), view = n => { main.innerHTML = ''; main.append(n); scrollTo(0, 0) };
+    const upd = () => $('#xp').textContent = 'Puntos: ' + total();
+
+    function renderHome() {
+      const g = el('div', { class: 'grid' });
+      LV.forEach((L, i) => g.append(el('button', { class: 'lvl', onclick: () => { cur = { l: i, i: 0, pts: 0 }; renderStep() } },
+        el('span', { class: 'ic' }, L.icon), el('b', {}, `Nivel ${i + 1}: ${L.title}`), el('span', { class: 'd' }, L.desc),
+        el('span', { html: stars(starsFor(best[i] || 0, 10 * q(L))) }))));
+      view(el('div', {}, el('div', { class: 'hero' }, el('h1', {}, 'PHP Y FORMULARIOS'),
+        el('p', { html: 'Aprende a **recibir, validar y calcular** los datos de un formulario con PHP. Superas cada nivel con preguntas, huecos de código y caza-errores. El chuletario completo está arriba, siempre a mano.' }),
+        el('button', { class: 'btn primary', onclick: () => { cur = { l: 0, i: 0, pts: 0 }; renderStep() } }, 'Empezar')), g));
+    }
+    function renderCheat() {
+      const w = el('div', { class: 'cheat' });
+      CH.forEach(([t, rows, src]) => w.append(el('div', { class: 'card' }, el('h3', {}, t), rows ? tbl(rows) : code(src))));
+      view(el('div', {}, el('h1', {}, 'CHULETARIO'), el('p', { class: 'muted' }, 'Todo lo que necesitas para procesar formularios con PHP.'), w));
+    }
+    function renderStep() {
+      const L = LV[cur.l], s = L.steps[cur.i], last = cur.i === L.steps.length - 1;
+      const body = el('div'), fbox = el('div'), foot = el('div', { class: 'foot' });
+      const card = el('div', { class: 'card' }, el('div', { class: 'meta' }, el('span', {}, L.title), el('span', {}, `${cur.i + 1}/${L.steps.length}`)),
+        el('div', { class: 'prog' }, el('i', { style: `width:${cur.i / L.steps.length * 100}%` })), el('span', { class: 'kind' }, KIND[s.t]), body, fbox, foot);
+      const api = {
+        body,
+        fb: (k, h) => { fbox.innerHTML = `<div class="fb ${k}">${h}</div>` },
+        setBtn: (t, f) => { foot.prepend(el('button', { class: 'btn primary', onclick: f }, t)) },
+        addBtn: (t, f) => foot.append(el('button', { class: 'btn', onclick: f }, t)),
+        complete: p => { cur.pts += p; foot.innerHTML = ''; foot.append(el('button', { class: 'btn primary', onclick: next }, last ? 'Terminar' : 'Siguiente')) }
+      };
+      R[s.t](s, api); view(card);
+    }
+    function next() { cur.i++; cur.i >= LV[cur.l].steps.length ? finish() : renderStep() }
+    function finish() {
+      const L = LV[cur.l], max = 10 * q(L); best[cur.l] = Math.max(best[cur.l] || 0, cur.pts); upd();
+      const n = starsFor(cur.pts, max);
+      view(el('div', { class: 'card res' }, el('div', { class: 'big' }, n === 3 ? '🏆' : n ? '👍' : '💪'), el('h2', {}, `Nivel ${cur.l + 1} completado`),
+        el('p', {}, `${cur.pts} de ${max} puntos`), el('div', { html: stars(n) }),
+        el('div', { class: 'foot', style: 'justify-content:center' }, el('button', { class: 'btn', onclick: () => { cur = { l: cur.l, i: 0, pts: 0 }; renderStep() } }, 'Repetir'),
+          cur.l < LV.length - 1 ? el('button', { class: 'btn primary', onclick: () => { cur = { l: cur.l + 1, i: 0, pts: 0 }; renderStep() } }, 'Siguiente nivel') : '',
+          el('button', { class: 'btn', onclick: renderHome }, 'Inicio'))));
+    }
+
+    /* ===== RENDERIZADORES ===== */
+    const R = {};
+    R.learn = (s, api) => {
+      api.body.append(el('h2', {}, s.title));
+      s.b.forEach(([k, v]) => api.body.append(k === 'p' ? el('p', { html: md(v) }) : k === 'code' ? code(v) : k === 'tip' ? el('div', { class: 'tip', html: md(v) }) : tbl(v)));
+      api.setBtn('Siguiente', next)
+    };
+    R.quiz = (s, api) => {
+      api.body.append(el('h2', { html: md(s.q) }));
+      const box = el('div', { class: 'opts' }); api.body.append(box);
+      let tries = 0, done = false;
+      const ord = s.fixed ? s.o.map((_, i) => i) : shuffle(s.o.map((_, i) => i));
+      ord.forEach((oi, n) => {
+        const b = el('button', {
+          class: 'opt', onclick: () => {
+            if (done) return; tries++;
+            if (oi === s.a) { done = true; b.classList.add('ok'); api.fb('ok', '<strong>¡Correcto!</strong> ' + md(s.why)); api.complete(tries === 1 ? 10 : 5) }
+            else { b.classList.add('ko'); api.fb('ko', 'Casi. Prueba otra opción.') }
+          }
+        }, el('span', { class: 'k' }, 'ABCD'[n]), el('span', { html: md(s.o[oi]) })); box.append(b)
+      });
+    };
+    R.match = (s, api) => {
+      api.body.append(el('h2', { html: md(s.q) }));
+      let sel = null, errs = 0, done = 0; const n = s.p.length;
+      const mk = (txt, i, left) => {
+        const b = el('button', {
+          class: 'chip', onclick: () => {
+            if (left) { document.querySelectorAll('.chip.sel').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); sel = { b, i }; return }
+            if (!sel) return;
+            if (sel.i === i) {
+              sel.b.className = 'chip ok'; b.className = 'chip ok'; sel = null; done++;
+              if (done === n) { api.fb('ok', '<strong>¡Todo emparejado!</strong>'); api.complete(Math.max(0, 10 - 2 * errs)) }
+            }
+            else { errs++; b.classList.add('ko'); setTimeout(() => b.classList.remove('ko'), 400); api.fb('ko', 'Esa no es. Elige otra.') }
+          }
+        }, el('span', { html: md(txt) })); return b
+      };
+      const l = el('div', { class: 'col' }), r = el('div', { class: 'col' });
+      shuffle(s.p.map((p, i) => [p[0], i])).forEach(([t, i]) => l.append(mk(t, i, true)));
+      shuffle(s.p.map((p, i) => [p[1], i])).forEach(([t, i]) => r.append(mk(t, i, false)));
+      api.body.append(el('p', { class: 'muted' }, 'Pulsa un elemento de la izquierda y después su pareja.'), el('div', { class: 'cols' }, l, r));
+    };
+    R.fill = (s, api) => {
+      const pre = el('pre', { class: 'fill' }), ins = [];
+      s.c.split('___').forEach((p, i, a) => {
+        pre.append(document.createTextNode(p));
+        if (i < a.length - 1) { const w = el('input', { type: 'text', size: Math.max(4, s.a[i].split('|')[0].length + 1), autocomplete: 'off', spellcheck: 'false' }); ins.push(w); pre.append(w) }
+      });
+      api.body.append(el('h2', { html: md(s.q) }), pre);
+      let tries = 0;
+      api.setBtn('Comprobar', () => {
+        tries++; let ok = 0;
+        ins.forEach((w, i) => { const g = s.a[i].split('|').includes(w.value.trim()); w.className = g ? 'ok' : 'ko'; if (g) ok++ });
+        if (ok === ins.length) { api.fb('ok', '<strong>¡Perfecto!</strong> ' + md(s.why)); api.complete(Math.max(3, 10 - 3 * (tries - 1))) }
+        else if (tries >= 3) { ins.forEach((w, i) => { w.value = s.a[i].split('|')[0]; w.className = 'ok' }); api.fb('ko', 'Estas eran las respuestas. ' + md(s.why)); api.complete(0) }
+        else api.fb('ko', `Aciertas ${ok} de ${ins.length}. Intento ${tries} de 3.`);
+      });
+    };
+    R.bugs = (s, api) => {
+      api.body.append(el('h2', { html: md(s.q) }));
+      const box = el('div', { class: 'bugs' }); api.body.append(box);
+      const tot = s.l.filter(l => l[1]).length, sel = new Set(); let tries = 0;
+      const rows = s.l.map((l, i) => {
+        const r = el('button', { class: 'bl', onclick: () => { sel.has(i) ? sel.delete(i) : sel.add(i); r.classList.toggle('sel', sel.has(i)) } },
+          el('span', { class: 'n' }, String(i + 1)), el('span', { html: hl(l[0]) })); box.append(r); return r
+      });
+      const ex = '<ul>' + s.l.map((l, i) => l[1] ? `<li><b>Línea ${i + 1}:</b> ${md(l[1])}</li>` : '').join('') + '</ul>';
+      const show = () => rows.forEach((r, i) => r.className = 'bl' + (s.l[i][1] ? ' ok' : ''));
+      api.setBtn('Comprobar', () => {
+        tries++; const hits = [...sel].filter(i => s.l[i][1]).length, wrong = sel.size - hits;
+        if (hits === tot && !wrong) { show(); api.fb('ok', '<strong>¡Todos los errores!</strong>' + ex); api.complete(Math.max(3, 10 - 3 * (tries - 1))) }
+        else if (tries >= 3) { show(); api.fb('ko', 'Estos eran los errores:' + ex); api.complete(0) }
+        else { [...sel].forEach(i => { if (!s.l[i][1]) { rows[i].className = 'bl ko'; sel.delete(i) } }); api.fb('ko', `Encontrados ${hits} de ${tot}; ${wrong} línea(s) marcada(s) estaba(n) bien (las quito). Intento ${tries} de 3.`) }
+      });
+    };
+    R.lab = (s, api) => {
+      api.body.append(el('h2', { html: md(s.q) }));
+      const ta = el('textarea', { class: 'ed', spellcheck: 'false', 'aria-label': 'Editor de código' }); ta.value = s.start;
+      ta.addEventListener('keydown', e => { if (e.key === 'Tab') { e.preventDefault(); ta.setRangeText('  ', ta.selectionStart, ta.selectionEnd, 'end') } });
+      const ul = el('ul', { class: 'checks' });
+      const lis = s.checks.map(c => { const li = el('li', { html: '<span>○</span><span>' + md(c[0]) + '</span>' }); ul.append(li); return li });
+      api.body.append(ta, el('h3', { style: 'margin-top:14px' }, 'Requisitos'), ul);
+      let best = 0, extra = false;
+      const fin = () => api.complete(Math.round(10 * best / s.checks.length));
+      api.addBtn('Ver solución de ejemplo', () => { ta.value = s.sol });
+      api.setBtn('Comprobar', () => {
+        let n = 0;
+        s.checks.forEach((c, i) => {
+          let ok = false; try { ok = !!c[1](ta.value) } catch (e) { }
+          lis[i].className = ok ? 'ok' : 'ko'; lis[i].firstChild.textContent = ok ? '✓' : '✗'; if (ok) n++
+        });
+        best = Math.max(best, n);
+        if (n === s.checks.length) { api.fb('ok', '<strong>¡Cumples todos los requisitos!</strong> Ya puedes con tu ejercicio real.'); fin() }
+        else {
+          api.fb('info', `Llevas ${n} de ${s.checks.length}. Corrige los ✗ y vuelve a probar.`);
+          if (!extra) { extra = true; api.addBtn('Terminar así', fin) }
+        }
+      });
+    };
+
+    $('#home').onclick = renderHome; $('#cheat').onclick = renderCheat;
+    renderHome();
+  </script>
+</body>
+
+</html>
