@@ -10,3 +10,11 @@ require_once __DIR__ . '/repositorioPreguntas.php';
 // TODO 5: calcula una nota entre 0 y 10 y muestra el resultado en HTML.
 
 echo 'Pendiente de implementar la corrección del ejercicio 07.';
+
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+    http_response_code(405);
+    exit('Envía el formulario mediante POST.');
+
+}
+  
+

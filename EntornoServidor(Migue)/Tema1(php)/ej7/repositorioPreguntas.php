@@ -43,4 +43,41 @@ $repositorioPreguntas = [
 // TODO: crea aquí el mapa $repositorioRespuestas con las respuestas correctas
 // de todas las preguntas. Utiliza las mismas asignaturas y el mismo texto
 // de cada pregunta que en $repositorioPreguntas. La corrección lo utilizará.
-$repositorioRespuestas = [];
+$repositorioRespuestas = [
+    "matematicas" => [
+        "¿Cuál es el resultado de 2 + 2?" => "4",
+        "¿Cuál es la raíz cuadrada de 16?" => "4",
+        "¿Cuánto es 10 dividido entre 2?" => "5",
+        "¿Qué es un número primo?" => "Divisible por 1 y por sí mismo",
+        "¿Cuál es el valor de Pi?" => "3.1416",
+        "¿Cuál es el resultado de 7 * 8?" => "56",
+        "¿Qué significa el logaritmo?" => "Inverso de la exponenciación",
+        "¿Cuál es el máximo común divisor de 12 y 18?" => "6",
+        "¿Cuántos lados tiene un hexágono?" => "6",
+        "¿Qué es un ángulo recto?" => "90 grados"
+    ],
+    "historia" => [
+        "¿Qué navegante europeo llegó a América en 1492?" => "Cristóbal Colón",
+        "¿En qué año comenzó la Primera Guerra Mundial?" => "1914",
+        "¿Quién fue el primer presidente de los Estados Unidos?" => "George Washington",
+        "¿Qué imperio construyó las pirámides?" => "Egipcio",
+        "¿Quién fue el primer emperador de Roma?" => "Augusto",
+        "¿En qué año comenzó la guerra de independencia de México?" => "1810",
+        "¿Quién fue Alejandro Magno?" => "Rey de Macedonia",
+        "¿Qué revolución fue liderada por Lenin?" => "Revolución Rusa",
+        "¿Qué ciudad fue destruida por el volcán Vesubio?" => "Pompeya",
+        "¿Quién escribió El Príncipe?" => "Nicolás Maquiavelo"
+    ],
+    "ciencias" => [
+        "¿Cuál es la fórmula del agua?" => "H2O",
+        "¿Qué planeta es conocido como el Planeta Rojo?" => "Marte",
+        "¿Cuál es el gas más abundante del aire que respiramos?" => "Nitrógeno",
+        "¿Cómo se llama la fuerza que nos mantiene en la Tierra?" => "Gravedad",
+        "¿Qué tipo de energía utiliza el sol?" => "Nuclear",
+        "¿Cuál es el elemento más abundante en el universo?" => "Hidrógeno",
+        "¿Qué animal es un mamífero?" => "Delfín",
+        "¿Qué significa ADN?" => "Ácido Desoxirribonucleico",
+        "¿Cuál es el órgano más grande del cuerpo humano?" => "La piel",
+        "¿Cuál de estos gases contribuye al efecto invernadero?" => "Dióxido de carbono"
+    ]
+];
