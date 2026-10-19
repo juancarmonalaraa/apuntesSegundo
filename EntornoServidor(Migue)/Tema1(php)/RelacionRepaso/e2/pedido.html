@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pedido electoral</title>
+</head>
+
+<body>
+    <h1>Pedido de material de campaña (simulación)</h1>
+    <form method="post" action="procesarPedido.php">
+        <label for="partido">Partido:</label>
+        <select id="partido" name="partido" required>
+            <option value="PSOE">PSOE</option>
+            <option value="PP">PP</option>
+            <option value="Vox">Vox</option>
+            <option value="Sumar">Sumar</option>
+            <option value="Podemos">Podemos</option>
+        </select>
+
+
+        <!-- TODO: radios obligatorios name="pack": basico, movil, completo -->
+
+         <fieldset>
+            <legend>Pack</legend>
+            <label><input type="radio" name="pack" value="basico" required> básico</label>
+            <label><input type="radio" name="pack" value="movil"> móvil</label>
+            <label><input type="radio" name="pack" value="completo"> completo</label>
+        </fieldset>
+
+        <!-- TODO: número entero name="unidades", mínimo 1 y máximo 8 -->
+
+        <label for="unidades">Número de unidades (1 a 8):</label>
+        <input type="number" name="unidades" id="unidades" min="1" max="8" value="1" required>
+
+        <!-- TODO: checkboxes name="extras[]": chapas, pegatinas, lanyards, folletos -->
+
+        <fieldset>
+            <legend>Extras</legend>
+            <label><input type="checkbox" name="extras[]" value="chapas"> chapas</label>
+            <label><input type="checkbox" name="extras[]" value="pegatinas"> pegatinas</label>
+            <label><input type="checkbox" name="extras[]" value="lanyards"> lanyards</label>
+            <label><input type="checkbox" name="extras[]" value="folletos"> folletos</label>
+        </fieldset>
+
+        <!-- TODO: radios obligatorios name="transporte": recogida, normal, urgente -->
+        <fieldset>
+            <legend>Transporte</legend>
+            <label><input type="radio" name="transporte" value="recogida" required> recogida</label>
+            <label><input type="radio" name="transporte" value="normal"> normal</label>
+            <label><input type="radio" name="transporte" value="urgente"> urgente</label>
+        </fieldset>
+
+        <!-- TODO: campo de texto opcional name="codigo" (LOCAL2026 o VOLUNTARIADO) -->
+
+
+        <legend for="codigo">Código de descuento (opcional):</legend>
+        <input type="text" id="codigo" name="codigo">
+
+        <button type="submit">Calcular pedido</button>
+    </form>
+</body>
+
+</html>
