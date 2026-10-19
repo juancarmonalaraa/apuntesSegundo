@@ -51,6 +51,14 @@ echo '<input type="hidden" name="asignatura" value="' . $asignaturaSegura . '">'
 
 // ----- Una vuelta por cada pregunta elegida -----
 foreach ($preguntasElegidas as $id) { 
+    $pregunta = $textos[$id];
+    echo '<input type="hidden" name="preguntas[]" value="' . $id . '">';
+    echo '<p>' . htmlspecialchars($pregunta) . '</p>';
+    foreach($preguntasAsignatura[$pregunta] as $opcion){
+    echo '<input type="radio" name="respuestas[' . $id . ']" value="' . htmlspecialchars($opcion) . '">';
+    echo htmlspecialchars($opcion) . '<br>';
+    }
+    
  }
 
 // ----- Botón y cierre -----

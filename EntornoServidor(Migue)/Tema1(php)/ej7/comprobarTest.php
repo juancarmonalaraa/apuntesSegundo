@@ -14,7 +14,16 @@ echo 'Pendiente de implementar la corrección del ejercicio 07.';
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     http_response_code(405);
     exit('Envía el formulario mediante POST.');
-
 }
   
+$asignatura = $_POST['asignatura'] ?? '';
+$preguntas = $_POST['preguntas'] ?? [];
+$respuestas = $_POST['respuestas'] ?? [];
 
+if (!is_string($asignatura) || !array_key_exists ($asignatura, $repositorioPreguntas)) {
+    exit('Asignatura no válida');
+}
+
+if (!is_array($preguntas) || !is_array($respuestas) || count($preguntas) === 0) {
+    exit('Datos no válidos')
+}
