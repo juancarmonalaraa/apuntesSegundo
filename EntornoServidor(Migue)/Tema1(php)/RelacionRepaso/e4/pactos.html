@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Pactómetro ficticio</title></head>
+<body>
+<h1>Pactómetro electoral 2026 (simulación)</h1>
+<p>Los escaños de los escenarios son inventados.</p>
+<form method="post" action="analizarPacto.php">
+    <label for="escenario">Escenario:</label>
+    <select name="escenario" id="escenario" required>
+        <option value="sierra">Asamblea de Sierra (41)</option>
+        <option value="costa">Asamblea de Costa (51)</option>
+        <option value="vega">Asamblea de Vega (61)</option>
+    </select>
+    <!-- TODO: checkboxes name="socios[]" con PSOE, PP, Vox, Sumar y Podemos. -->
+    <fieldset>
+            <legend>Socios</legend>
+            <label><input type="checkbox" name="socios[]" value="PSOE"> PSOE</label>
+            <label><input type="checkbox" name="socios[]" value="PP"> PP</label>
+            <label><input type="checkbox" name="socios[]" value="Vox"> Vox</label>
+            <label><input type="checkbox" name="socios[]" value="Sumar"> Sumar</label>
+            <label><input type="checkbox" name="socios[]" value="Podemos"> Podemos</label>
+        </fieldset>
+
+    <!-- Se deben poder elegir entre 1 y 3 partidos. -->
+    <button type="submit">Analizar pacto</button>
+</form>
+</body></html>
