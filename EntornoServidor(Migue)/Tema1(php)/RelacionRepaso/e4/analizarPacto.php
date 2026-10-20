@@ -60,7 +60,8 @@ $diferencia = $escanosPacto - $mayoriaAbsoluta;   // positivo: sobran; negativo:
 // TODO 5: coalición con cada partido que NO está en el pacto
 $coaliciones = [];
 foreach ($partidosEscenario as $partido => $escanos) {
-    if (!in_array($partido, $sociosElegidos, true)) {
+    if (!in_array($partido, $sociosElegidos, true)) { //aqui lee los que no estan el pacto, es decir los restantes
+    // “si este partido NO está entre mis socios”. Es in_array porque $sociosElegidos es una lista simple de nombres.
         $coaliciones[$partido] = $escanosPacto + $escanos;
     }
 }
