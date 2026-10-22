@@ -1,0 +1,239 @@
+:root {
+    --negro: black;
+    --blanco: white;
+    --verde: #42cdb4;
+    --coral: #ff4a4a;
+    --grisOscuro: #333;
+    --grisClaro: #888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .5s;
+}
+
+body,
+html {
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Titulos de seccion con rayita debajo */
+main#home h2 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--grisOscuro);
+
+    &::after {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 2px;
+        background-color: var(--verde);
+        margin: 15px auto 30px;
+    }
+}
+
+/* SEC HEADER */
+header#header {
+    width: 100%;
+    padding: 20px 5%;
+    background-color: var(--verde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a.logo img {
+        max-width: 90px;
+    }
+
+    nav.menu {
+        a {
+            color: var(--blanco);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-left: 40px;
+
+            &:hover {
+                color: var(--grisOscuro);
+            }
+        }
+    }
+}
+
+/* SEC BANNER */
+section#banner {
+    width: 100%;
+    min-height: 70vh;
+    background: var(--verde) url(../img/cabecera.png) no-repeat center bottom;
+    background-size: auto 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+    color: var(--blanco);
+
+    h1 {
+        font-size: 7rem;
+        font-weight: 200;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+}
+
+/* SEC MAIN */
+section#trabajos,
+section#soporte,
+section#equipo {
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 80px 0;
+
+    >p {
+        width: 80%;
+        margin: 0 auto 30px;
+        text-align: center;
+        color: var(--grisClaro);
+        line-height: 1.5;
+    }
+}
+
+section#trabajos {
+    h2::after {
+        background-color: var(--coral);
+    }
+
+    div.fotos {
+        display: flex;
+        gap: 15px;
+
+        img {
+            width: 33.33%;
+            object-fit: cover;
+        }
+    }
+}
+
+section#soporte {
+    div.lista {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px 0;
+
+        article {
+            width: 31%;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+
+            img {
+                width: 20px;
+                margin-top: 2px;
+            }
+
+            h4 {
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                color: var(--grisOscuro);
+                margin-bottom: 5px;
+            }
+
+            p {
+                color: var(--grisClaro);
+                line-height: 1.4;
+            }
+        }
+    }
+}
+
+section#equipo {
+    div.fotos {
+        display: flex;
+        gap: 15px;
+
+        article {
+            width: 33.33%;
+            text-align: center;
+
+            img {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            h4 {
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                color: var(--grisOscuro);
+            }
+
+            p {
+                font-style: italic;
+                font-weight: 300;
+                color: var(--grisClaro);
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+/* SEC FOOTER */
+footer#footer {
+    width: 100%;
+    padding: 100px 0;
+    background-color: var(--verde);
+    text-align: center;
+    color: var(--blanco);
+    font-size: 1.1rem;
+}
+
+/* Movil */
+@media (max-width: 768px) {
+    header#header nav.menu a {
+        margin-left: 15px;
+        font-size: 0.7rem;
+    }
+
+    section#banner h1 {
+        font-size: 3rem;
+    }
+
+    section#banner h2 {
+        font-size: 1.5rem;
+    }
+
+    section#trabajos div.fotos,
+    section#equipo div.fotos {
+        flex-direction: column;
+
+        img,
+        article {
+            width: 100%;
+        }
+    }
+
+    section#soporte div.lista article {
+        width: 100%;
+    }
+}
