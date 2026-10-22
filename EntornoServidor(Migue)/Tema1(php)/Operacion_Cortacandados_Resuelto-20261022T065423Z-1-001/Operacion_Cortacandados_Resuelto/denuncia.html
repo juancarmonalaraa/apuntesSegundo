@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Operación Cortacandados - Nueva denuncia</title>
+</head>
+<body>
+  <h1>Operación Cortacandados</h1>
+  <h2>Crear un expediente de robo de bicicleta</h2>
+  <form action="generarExpediente.php" method="post">
+    <p>
+      <label>Nombre de la persona denunciante:
+        <input type="text" name="nombre" required>
+      </label>
+    </p>
+    <p>
+      <label>Barrio:
+        <select name="barrio" required>
+          <option value="centro">Centro</option>
+          <option value="zaidin">Zaidín</option>
+          <option value="chana">La Chana</option>
+          <option value="realejo">Realejo</option>
+        </select>
+      </label>
+    </p>
+    <p>
+      <label>Modelo de bicicleta:
+        <select name="modelo" required>
+          <option value="urbana">Bicicleta urbana</option>
+          <option value="montana">Bicicleta de montaña</option>
+          <option value="carretera">Bicicleta de carretera</option>
+          <option value="electrica">Bicicleta eléctrica</option>
+        </select>
+      </label>
+    </p>
+    <p>
+      <label>Antigüedad de la bicicleta (0 a 5 años):
+        <input type="number" name="antiguedad" min="0" max="5" step="1" required>
+      </label>
+    </p>
+    <p>
+      <label>Número de pistas a revisar (3 a 5):
+        <input type="number" name="cantidad" min="3" max="5" step="1" required>
+      </label>
+    </p>
+    <button type="submit">Generar expediente</button>
+  </form>
+</body>
+</html>
