@@ -1,0 +1,23 @@
+:root {
+    --negro: black;
+    --blanco: white;
+    --morado: #4834d4;
+    --grisOscuro: #222;
+    --grisClaro: #666;
+    --crimson: crimson;
+}
+
+
+
+body,
+html {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+
