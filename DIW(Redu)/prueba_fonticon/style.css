@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?hz3o51');
+  src:  url('fonts/icomoon.eot?hz3o51#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?hz3o51') format('truetype'),
+    url('fonts/icomoon.woff?hz3o51') format('woff'),
+    url('fonts/icomoon.svg?hz3o51#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-smile2:before {
+  content: "\fe";
+  font-size: 40px;
+}
+.icon-point-right:before {
+  content: "\ea04";
+  font-size: 40px;
+}
+.icon-tux:before {
+  content: "\eabd";
+  font-size: 40px;
+}
+.icon-tux:hover {
+  color: aqua;
+
+}
+.icon-point-right:hover {
+  color: aqua;
+}
+.icon-smile2:hover {
+  color: aqua;
+}
