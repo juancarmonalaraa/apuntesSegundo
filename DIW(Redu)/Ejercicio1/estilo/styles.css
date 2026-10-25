@@ -259,3 +259,457 @@ footer#footer {
     }
 
 }
+
+:root {
+    --negro: black;
+    --blanco: white;
+    --morado: #4834d4;
+    --grisOscuro: #222;
+    --grisClaro: #666;
+    --crimson: crimson;
+    --cian: #3197a5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body,
+html {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 2rem;
+
+}
+
+header#header {
+    /* modelo de caja */
+    /* width, height, margin, padding, display*/
+    max-width: 80%;
+    margin: auto;
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    /* background-color:yellow; */
+    nav.menu {
+        a {
+
+            text-transform: uppercase;
+            font-weight: 900;
+            /* margin-left: 20px; */
+
+            padding: 0 5px;
+            margin: 0 5px;
+
+            &:first-child {
+                border: none;
+            }
+
+            &:hover {
+                color: var(--morado);
+                border-color: var(--negro);
+            }
+
+        }
+    }
+}
+
+a.botonigual {
+    background-color: #3197a5;
+    display: inline-flex;
+    /* Permite centrar el texto y aplicar dimensiones */
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    height: 35px;
+    /* Lo hace más grande a los lados */
+    width: 140px;
+
+    /* Controla el espacio interno: 8px arriba/abajo (poco) y 0 a los lados */
+
+    border-radius: 100px;
+}
+
+a.home,
+a.equipo,
+a.contacto {
+    text-decoration: none;
+    color: black;
+
+}
+
+section#banner {
+    background-color: var(--cian);
+    background: url(../img/fondo.jpg)no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+    color: var(--blanco);
+    aspect-ratio: 1920 / 700;
+    gap: 20px;
+
+
+    h1 {
+        font-size: 75px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 5px;
+        font-weight: 100;
+        font-size: 25px;
+    }
+
+    a {
+        border: 2px solid white;
+        padding: 10px 20px;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+    }
+}
+
+#informacion-interes {
+
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+    color: var(--blanco);
+    gap: 20px;
+    padding: 50px;
+
+    p {
+        color: var(--negro);
+        font-size: 15px;
+        margin-left: 500px;
+        margin-right: 500px;
+    }
+
+}
+
+#servicios {
+    background-color: var(--cian);
+    padding: 60px 20px;
+    /* Espaciado arriba y abajo */
+    color: white;
+    /* Texto blanco en toda la sección */
+    text-align: center;
+}
+
+#servicios .arriba {
+    color: white;
+    font-size: 32px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+#servicios .abajo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    /* Espacio entre los 3 servicios */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#servicios .abajo article {
+    text-align: center;
+    flex: 1;
+    /* Distribuye el espacio equitativamente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#servicios .abajo img {
+    border: 3px solid white;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    padding: 25px;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+/* Texto debajo de cada icono */
+#servicios .abajo p {
+    color: white;
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+#galeria {
+    max-width: 80%;
+    margin: auto;
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: -54px;
+
+    p {
+        max-width: 400px;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 25px;
+        line-height: 1.8;
+    }
+}
+
+
+
+footer#footer {
+    padding: 50px 20px;
+    ;
+    width: 100%;
+    display: flex;
+    background-color: rgb(59, 59, 59);
+    text-align: center;
+    justify-content: space-around;
+
+
+    a {
+        color: var(--blanco);
+        margin: 0 20px;
+        font-size: 1.5rem;
+        border: 3px solid white;
+        border-radius: 50%;
+        width: auto;
+        height: auto;
+        padding: 15px;
+        object-fit: contain;
+        box-sizing: border-box;
+        img{
+            width: 10px;
+        }
+    }
+
+    
+
+    .textoFooter {
+        color: grey;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE WEB DESIGN (media queries)
+   Mismo orden que el tema: de escritorio hacia móvil
+   ===================================================== */
+
+/* ---------- Pantallas medianas / portátiles pequeños (hasta 1200px) ---------- */
+@media screen and (max-width: 1200px) {
+
+    header#header {
+        max-width: 90%;
+    }
+
+    section#banner h1 {
+        font-size: 60px;
+    }
+
+    /* los 500px de margen se salen en pantallas más pequeñas */
+    #informacion-interes p {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 600px;
+    }
+
+    #servicios .abajo {
+        max-width: 90%;
+    }
+}
+
+
+/* ---------- Tablet (de 769px a 1024px) ---------- */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    header#header {
+        padding: 30px 0;
+    }
+
+    section#banner h1 {
+        font-size: 48px;
+    }
+
+    section#banner h2 {
+        font-size: 20px;
+    }
+
+    #servicios .abajo {
+        gap: 20px;
+    }
+
+    #servicios .abajo img {
+        width: 90px;
+        height: 90px;
+        padding: 20px;
+    }
+
+    #galeria {
+        max-width: 90%;
+        gap: 30px;
+    }
+
+    #galeria p {
+        max-width: 100%;
+    }
+
+    footer#footer a {
+        margin: 0 10px;
+    }
+}
+
+
+/* ---------- Móvil y tablet vertical (hasta 768px) ---------- */
+@media screen and (max-width: 768px) {
+
+    /* HEADER: logo arriba y menú debajo */
+    header#header {
+        max-width: 100%;
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px 15px;
+    }
+
+    header#header nav.menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* BANNER: quitamos la proporción fija para que el texto quepa */
+    section#banner {
+        aspect-ratio: auto;
+        padding: 60px 20px;
+    }
+
+    section#banner h1 {
+        font-size: 36px;
+    }
+
+    section#banner h2 {
+        font-size: 18px;
+    }
+
+    /* INFORMACIÓN */
+    #informacion-interes {
+        padding: 30px 20px;
+    }
+
+    #informacion-interes p {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    /* SERVICIOS: de 3 columnas a 1 */
+    #servicios {
+        padding: 40px 20px;
+    }
+
+    #servicios .arriba {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    #servicios .abajo {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    /* GALERÍA: imagen arriba y texto debajo */
+    #galeria {
+        max-width: 90%;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 30px 0;
+        margin-bottom: 0;
+    }
+
+    #galeria p {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    /* FOOTER: todo en columna */
+    footer#footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 30px 15px;
+    }
+
+    footer#footer a {
+        margin: 0 8px;
+    }
+}
+
+
+/* ---------- Móvil pequeño (hasta 480px) ---------- */
+@media screen and (max-width: 480px) {
+
+    body,
+    html {
+        font-size: 13px;
+    }
+
+    section#banner h1 {
+        font-size: 28px;
+    }
+
+    section#banner h2 {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #servicios .abajo img {
+        width: 90px;
+        height: 90px;
+        padding: 20px;
+    }
+
+    a.botonigual {
+        width: 120px;
+    }
+}
+
+
