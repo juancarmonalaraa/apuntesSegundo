@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS ud2_usuarios
+    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE ud2_usuarios;
+
+CREATE TABLE IF NOT EXISTS usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(160) NOT NULL UNIQUE,
+    nombre VARCHAR(120) NOT NULL,
+    clave_hash VARCHAR(255) NOT NULL
+);
