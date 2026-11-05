@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="large centered row">
+  <div class="half col">
+    <pre class="large log row">
+      <span class="label">current time</span>
+      <span class="value lcd">0</span>
+    </pre>
+  </div>
+  <div class="half col">
+    <pre class="large log row">
+      <span class="label">callback fired</span>
+      <span class="value lcd">0</span>
+    </pre>
+  </div>
+</div>
+</body>
+</html>
+<script>
+    import { createTimer } from 'animejs';
+
+const [ $time, $count ] = utils.$('.value');
+
+createTimer({
+  duration: 1000,
+  loop: true,
+  frameRate: 30,
+  onUpdate: self => $time.innerHTML = self.currentTime,
+  onLoop: self => $count.innerHTML = self._currentIteration
+});
+</script>

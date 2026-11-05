@@ -1,0 +1,10 @@
+// LIBRERIAS
+        // https://michalsnik.github.io/aos/
+
+        // 
+        // 1. GSAP ScrollTrigger
+        // Locomotive Scroll
+        // https://simpleparallax.com/
+        // https://atroposjs.com/
+        // https://lenis.dev/
+        // https://dixonandmoe.com/rellax

@@ -1,259 +1,262 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nómada Coworking | Trabaja donde te inspire</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/estilos.css" rel="stylesheet">
-</head>
-<body>
-
-<!-- ===== CABECERA (navbar) ===== -->
-<header class="cabecera">
-  <nav class="navbar md:navbar-expand">
-    <div class="container barra">
-      <a class="navbar-brand" href="#inicio">
-        <img src="img/logo.svg" alt="Nómada Coworking">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse" id="menu">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#espacios">Espacios</a></li>
-          <li class="nav-item"><a class="nav-link" href="#planes">Planes</a></li>
-          <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-        </ul>
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nómada Coworking | Trabaja donde te inspire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/estilos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" defer></script>
+<script src="js/animaciones.js" defer></script>
+  </head>
+  <body>
+<div class="progreso" id="progreso"></div>
+  <!-- ===== CABECERA (navbar) ===== -->
+  <header class="cabecera">
+    <nav class="navbar md:navbar-expand">
+      <div class="container barra">
+        <a class="navbar-brand" href="#inicio">
+          <img src="img/logo.svg" alt="Nómada Coworking">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse" id="menu">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#espacios">Espacios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#planes">Planes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
-<main>
+  <main>
 
-  <!-- ===== HERO ===== -->
-  <section id="inicio" class="hero">
-    <div class="container">
-      <div class="row g-4 fila-centrada">
-        <div class="col-12 md:col-6">
-          <p class="etiqueta">Coworking en el centro de la ciudad</p>
-          <h1 class="hero-titulo">Trabaja donde te inspire</h1>
-          <p class="hero-texto">Espacios flexibles, buena conexión y una comunidad de profesionales creativos. Empieza hoy sin contratos de larga duración.</p>
-          <div class="hero-botones">
-            <a class="boton boton-principal" href="#contacto">Reserva una visita</a>
-            <a class="boton boton-contorno" href="#planes">Ver planes</a>
+    <!-- ===== HERO ===== -->
+    <section id="inicio" class="hero">
+      <div class="container">
+        <div class="row g-4 fila-centrada">
+          <div class="col-12 md:col-6">
+            <p class="etiqueta">Coworking en el centro de la ciudad</p>
+            <h1 class="hero-titulo">Trabaja donde te inspire</h1>
+            <p class="hero-texto">Espacios flexibles, buena conexión y una comunidad de profesionales creativos. Empieza hoy sin contratos de larga duración.</p>
+            <div class="hero-botones">
+              <a class="boton boton-principal" href="#contacto">Reserva una visita</a>
+              <a class="boton boton-contorno" href="#planes">Ver planes</a>
+            </div>
+          </div>
+          <div class="col-12 md:col-6">
+            <img class="hero-imagen" src="img/hero.jpg" alt="Zona de trabajo luminosa con mesas y sillas">
           </div>
         </div>
-        <div class="col-12 md:col-6">
-          <img class="hero-imagen" src="img/hero.jpg" alt="Zona de trabajo luminosa con mesas y sillas">
+      </div>
+    </section>
+
+    <!-- ===== VENTAJAS ===== -->
+    <section class="seccion seccion-suave">
+      <div class="container">
+        <h2 class="titulo-seccion">¿Por qué Nómada?</h2>
+        <div class="row g-4">
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-ventaja">
+              <img class="icono-ventaja" src="img/icono-flexibilidad.svg" alt="">
+              <h3>Flexibilidad total</h3>
+              <p>Reserva por horas, días o meses y cambia de plan cuando lo necesites.</p>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-ventaja">
+              <img class="icono-ventaja" src="img/icono-comunidad.svg" alt="">
+              <h3>Comunidad</h3>
+              <p>Eventos semanales, charlas y networking con profesionales de todos los sectores.</p>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-ventaja">
+              <img class="icono-ventaja" src="img/icono-tecnologia.svg" alt="">
+              <h3>Tecnología</h3>
+              <p>Fibra de alta velocidad, salas de videoconferencia y impresión incluida.</p>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== VENTAJAS ===== -->
-  <section class="seccion seccion-suave">
+    <!-- ===== ESPACIOS ===== -->
+    <section id="espacios" class="seccion">
+      <div class="container">
+        <h2 class="titulo-seccion titulo-seccion-corto">Nuestros espacios</h2>
+        <p class="descripcion-seccion">Seis zonas pensadas para cada tipo de jornada.</p>
+        <div class="row g-4">
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-espacio">
+              <img src="img/espacio-1.jpg" alt="Mesas compartidas junto a la ventana">
+              <div class="tarjeta-cuerpo">
+                <h3>Mesas compartidas</h3>
+                <p>Escritorios luminosos junto a la ventana, con wifi y enchufes en cada puesto.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-espacio">
+              <img src="img/espacio-2.jpg" alt="Sala de reuniones con pantalla">
+              <div class="tarjeta-cuerpo">
+                <h3>Salas de reuniones</h3>
+                <p>Pantalla, videoconferencia y pizarra para reuniones de hasta 10 personas.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-espacio">
+              <img src="img/espacio-3.jpg" alt="Zona de descanso con sofás">
+              <div class="tarjeta-cuerpo">
+                <h3>Zona de descanso</h3>
+                <p>Sofás y rincones tranquilos para pausas, llamadas breves o lectura.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-espacio">
+              <img src="img/espacio-4.jpg" alt="Puestos individuales silenciosos">
+              <div class="tarjeta-cuerpo">
+                <h3>Puestos silenciosos</h3>
+                <p>Escritorios individuales en una sala sin conversaciones para concentrarse.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-espacio">
+              <img src="img/espacio-5.jpg" alt="Cabina telefónica insonorizada">
+              <div class="tarjeta-cuerpo">
+                <h3>Cabinas telefónicas</h3>
+                <p>Cabinas insonorizadas para llamadas y entrevistas en privado.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-espacio">
+              <img src="img/espacio-6.jpg" alt="Cafetería con barra">
+              <div class="tarjeta-cuerpo">
+                <h3>Cafetería</h3>
+                <p>Café de especialidad, zona de comidas y el mejor sitio para el networking.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PLANES ===== -->
+    <section id="planes" class="seccion seccion-suave">
+      <div class="container">
+        <h2 class="titulo-seccion">Planes y precios</h2>
+        <div class="row g-4">
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-plan">
+              <h3>Básico</h3>
+              <p class="plan-precio">29 €<span class="plan-periodo">/mes</span></p>
+              <p class="plan-frase">Acceso a zonas comunes y wifi de alta velocidad.</p>
+              <a class="boton boton-contorno boton-plan" href="#contacto">Elegir plan</a>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-plan">
+              <h3>Pro</h3>
+              <p class="plan-precio">59 €<span class="plan-periodo">/mes</span></p>
+              <p class="plan-frase">Escritorio fijo 24/7 y 10 horas de sala al mes.</p>
+              <a class="boton boton-principal boton-plan" href="#contacto">Elegir plan</a>
+            </article>
+          </div>
+          <div class="col-12 md:col-4">
+            <article class="tarjeta tarjeta-plan">
+              <h3>Equipo</h3>
+              <p class="plan-precio">149 €<span class="plan-periodo">/mes</span></p>
+              <p class="plan-frase">Cinco escritorios fijos y una sala privada.</p>
+              <a class="boton boton-contorno boton-plan" href="#contacto">Elegir plan</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIOS ===== -->
+    <section id="testimonios" class="seccion">
+      <div class="container">
+        <h2 class="titulo-seccion">Lo que dicen nuestros socios</h2>
+        <div class="row g-4">
+          <div class="col-12 md:col-6">
+            <figure class="tarjeta tarjeta-testimonio">
+              <blockquote>“Desde que llegué a Nómada tengo una rutina y una red de contactos que no tenía en casa.”</blockquote>
+              <figcaption>
+                <img class="avatar" src="img/testimonio-1.jpg" alt="Foto de Lucía M.">
+                <span><strong>Lucía M.</strong><br><span class="cargo">Diseñadora freelance</span></span>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="col-12 md:col-6">
+            <figure class="tarjeta tarjeta-testimonio">
+              <blockquote>“Las salas de reuniones están siempre listas y la fibra no falla. Ideal para nuestro equipo.”</blockquote>
+              <figcaption>
+                <img class="avatar" src="img/testimonio-2.jpg" alt="Foto de Javier R.">
+                <span><strong>Javier R.</strong><br><span class="cargo">CEO de una startup</span></span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== PIE ===== -->
+  <footer id="contacto" class="pie">
     <div class="container">
-      <h2 class="titulo-seccion">¿Por qué Nómada?</h2>
       <div class="row g-4">
         <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-ventaja">
-            <img class="icono-ventaja" src="img/icono-flexibilidad.svg" alt="">
-            <h3>Flexibilidad total</h3>
-            <p>Reserva por horas, días o meses y cambia de plan cuando lo necesites.</p>
-          </article>
+          <img class="pie-logo" src="img/logo.svg" alt="Nómada Coworking">
+          <ul class="pie-contacto">
+            <li><img src="img/icono-ubicacion.svg" alt="">Calle Mayor 12, 28013 Madrid</li>
+            <li><img src="img/icono-email.svg" alt="">hola@nomada-coworking.example</li>
+            <li><img src="img/icono-telefono.svg" alt="">+34 912 345 678</li>
+          </ul>
         </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-ventaja">
-            <img class="icono-ventaja" src="img/icono-comunidad.svg" alt="">
-            <h3>Comunidad</h3>
-            <p>Eventos semanales, charlas y networking con profesionales de todos los sectores.</p>
-          </article>
+        <div class="col-6 md:col-2">
+          <h4>Espacio</h4>
+          <ul class="pie-enlaces">
+            <li><a href="#espacios">Espacios</a></li>
+            <li><a href="#planes">Planes</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+          </ul>
         </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-ventaja">
-            <img class="icono-ventaja" src="img/icono-tecnologia.svg" alt="">
-            <h3>Tecnología</h3>
-            <p>Fibra de alta velocidad, salas de videoconferencia y impresión incluida.</p>
-          </article>
+        <div class="col-6 md:col-2">
+          <h4>Empresa</h4>
+          <ul class="pie-enlaces">
+            <li><a href="#inicio">Sobre nosotros</a></li>
+            <li><a href="#inicio">Blog</a></li>
+            <li><a href="#inicio">Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+        <div class="col-6 md:col-2">
+          <h4>Síguenos</h4>
+          <ul class="pie-enlaces">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">X</a></li>
+          </ul>
         </div>
       </div>
+      <p class="pie-copyright">© 2026 Nómada Coworking. Todos los derechos reservados.</p>
     </div>
-  </section>
+  </footer>
 
-  <!-- ===== ESPACIOS ===== -->
-  <section id="espacios" class="seccion">
-    <div class="container">
-      <h2 class="titulo-seccion titulo-seccion-corto">Nuestros espacios</h2>
-      <p class="descripcion-seccion">Seis zonas pensadas para cada tipo de jornada.</p>
-      <div class="row g-4">
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-espacio">
-            <img src="img/espacio-1.jpg" alt="Mesas compartidas junto a la ventana">
-            <div class="tarjeta-cuerpo">
-              <h3>Mesas compartidas</h3>
-              <p>Escritorios luminosos junto a la ventana, con wifi y enchufes en cada puesto.</p>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-espacio">
-            <img src="img/espacio-2.jpg" alt="Sala de reuniones con pantalla">
-            <div class="tarjeta-cuerpo">
-              <h3>Salas de reuniones</h3>
-              <p>Pantalla, videoconferencia y pizarra para reuniones de hasta 10 personas.</p>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-espacio">
-            <img src="img/espacio-3.jpg" alt="Zona de descanso con sofás">
-            <div class="tarjeta-cuerpo">
-              <h3>Zona de descanso</h3>
-              <p>Sofás y rincones tranquilos para pausas, llamadas breves o lectura.</p>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-espacio">
-            <img src="img/espacio-4.jpg" alt="Puestos individuales silenciosos">
-            <div class="tarjeta-cuerpo">
-              <h3>Puestos silenciosos</h3>
-              <p>Escritorios individuales en una sala sin conversaciones para concentrarse.</p>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-espacio">
-            <img src="img/espacio-5.jpg" alt="Cabina telefónica insonorizada">
-            <div class="tarjeta-cuerpo">
-              <h3>Cabinas telefónicas</h3>
-              <p>Cabinas insonorizadas para llamadas y entrevistas en privado.</p>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-espacio">
-            <img src="img/espacio-6.jpg" alt="Cafetería con barra">
-            <div class="tarjeta-cuerpo">
-              <h3>Cafetería</h3>
-              <p>Café de especialidad, zona de comidas y el mejor sitio para el networking.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PLANES ===== -->
-  <section id="planes" class="seccion seccion-suave">
-    <div class="container">
-      <h2 class="titulo-seccion">Planes y precios</h2>
-      <div class="row g-4">
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-plan">
-            <h3>Básico</h3>
-            <p class="plan-precio">29 €<span class="plan-periodo">/mes</span></p>
-            <p class="plan-frase">Acceso a zonas comunes y wifi de alta velocidad.</p>
-            <a class="boton boton-contorno boton-plan" href="#contacto">Elegir plan</a>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-plan">
-            <h3>Pro</h3>
-            <p class="plan-precio">59 €<span class="plan-periodo">/mes</span></p>
-            <p class="plan-frase">Escritorio fijo 24/7 y 10 horas de sala al mes.</p>
-            <a class="boton boton-principal boton-plan" href="#contacto">Elegir plan</a>
-          </article>
-        </div>
-        <div class="col-12 md:col-4">
-          <article class="tarjeta tarjeta-plan">
-            <h3>Equipo</h3>
-            <p class="plan-precio">149 €<span class="plan-periodo">/mes</span></p>
-            <p class="plan-frase">Cinco escritorios fijos y una sala privada.</p>
-            <a class="boton boton-contorno boton-plan" href="#contacto">Elegir plan</a>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIOS ===== -->
-  <section id="testimonios" class="seccion">
-    <div class="container">
-      <h2 class="titulo-seccion">Lo que dicen nuestros socios</h2>
-      <div class="row g-4">
-        <div class="col-12 md:col-6">
-          <figure class="tarjeta tarjeta-testimonio">
-            <blockquote>“Desde que llegué a Nómada tengo una rutina y una red de contactos que no tenía en casa.”</blockquote>
-            <figcaption>
-              <img class="avatar" src="img/testimonio-1.jpg" alt="Foto de Lucía M.">
-              <span><strong>Lucía M.</strong><br><span class="cargo">Diseñadora freelance</span></span>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-12 md:col-6">
-          <figure class="tarjeta tarjeta-testimonio">
-            <blockquote>“Las salas de reuniones están siempre listas y la fibra no falla. Ideal para nuestro equipo.”</blockquote>
-            <figcaption>
-              <img class="avatar" src="img/testimonio-2.jpg" alt="Foto de Javier R.">
-              <span><strong>Javier R.</strong><br><span class="cargo">CEO de una startup</span></span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ===== PIE ===== -->
-<footer id="contacto" class="pie">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-12 md:col-4">
-        <img class="pie-logo" src="img/logo.svg" alt="Nómada Coworking">
-        <ul class="pie-contacto">
-          <li><img src="img/icono-ubicacion.svg" alt="">Calle Mayor 12, 28013 Madrid</li>
-          <li><img src="img/icono-email.svg" alt="">hola@nomada-coworking.example</li>
-          <li><img src="img/icono-telefono.svg" alt="">+34 912 345 678</li>
-        </ul>
-      </div>
-      <div class="col-6 md:col-2">
-        <h4>Espacio</h4>
-        <ul class="pie-enlaces">
-          <li><a href="#espacios">Espacios</a></li>
-          <li><a href="#planes">Planes</a></li>
-          <li><a href="#testimonios">Testimonios</a></li>
-        </ul>
-      </div>
-      <div class="col-6 md:col-2">
-        <h4>Empresa</h4>
-        <ul class="pie-enlaces">
-          <li><a href="#inicio">Sobre nosotros</a></li>
-          <li><a href="#inicio">Blog</a></li>
-          <li><a href="#inicio">Trabaja con nosotros</a></li>
-        </ul>
-      </div>
-      <div class="col-6 md:col-2">
-        <h4>Síguenos</h4>
-        <ul class="pie-enlaces">
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">X</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="pie-copyright">© 2026 Nómada Coworking. Todos los derechos reservados.</p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" type="module"></script>
-</body>
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" type="module"></script>
+  </body>
+  
+  </html>

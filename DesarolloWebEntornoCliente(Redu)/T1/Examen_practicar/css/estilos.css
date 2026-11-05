@@ -215,7 +215,7 @@ a { text-decoration: none; }
 
 .hero-titulo {
   margin-bottom: 1rem;
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-size: 40px
 }
 
 .hero-texto {
@@ -560,4 +560,39 @@ a { text-decoration: none; }
   .titulo-seccion {
     font-size: 1.5rem;
   }
+}
+/* ---------- ANIMACIONES (anime.js) ---------- */
+
+/* Barra de progreso de scroll */
+.progreso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-principal), var(--color-acento));
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Letras del título del hero */
+.letra {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Estado inicial de lo que se anima al hacer scroll */
+.anima-tarjeta,
+.anima-titulo,
+.anima-texto {
+  opacity: 0;
+}
+
+/* Que no se vea scroll horizontal por las animaciones laterales */
+main { overflow-x: clip; }
+
+/* Respeta a quien no quiere animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .anima-tarjeta, .anima-titulo, .anima-texto { opacity: 1; }
 }
