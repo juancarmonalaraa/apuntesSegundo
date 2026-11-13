@@ -1,5 +1,12 @@
 <?php
+ 
 declare(strict_types=1);
-// TODO: aceptar solo POST.
-// TODO: cerrar por completo la sesión y caducar la cookie.
-// TODO: redirigir a acceso.php.
+require_once __DIR__ . '/sesion.php';
+ 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    exit('Método no permitido');
+}
+cerrarSesionCompleta();
+header('Location: acceso.php');
+exit;
