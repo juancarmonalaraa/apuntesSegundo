@@ -1,0 +1,190 @@
+/* ---------- GENERAL ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background-color: #fefdfb;
+  color: #222;
+  padding: 0 50px;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+/* ---------- HEADER ---------- */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.logo a {
+  font-size: 24px;
+}
+
+.menu {
+  display: flex;
+  gap: 26px;
+}
+
+/* ---------- TITULO ---------- */
+.titulo {
+  margin-top: 60px;
+}
+
+.titulo h1 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 70px;
+}
+
+.titulo h1 span {
+  margin-right: 5px;
+}
+
+/* el (19) pequeñito, va dentro del h1 */
+.titulo h1 {
+  font-size: 12px;
+}
+
+.titulo h1 span {
+  font-size: 70px;
+}
+
+.barra {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  color: #888;
+}
+
+/* ---------- PRODUCTOS (EL GRID) ---------- */
+.productos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  justify-content: stretch;
+  align-content: stretch;
+  margin-top: 40px;
+}
+
+.producto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.producto img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: #f8f6f3;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px;
+}
+
+.color {
+  color: #999;
+}
+
+/* Los productos grandes ocupan 2 columnas y 2 filas */
+.grande {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.grande img {
+  aspect-ratio: auto;
+  flex: 1;
+  height: 0;
+}
+
+/* Caja oscura */
+.oscura {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  justify-content: flex-end;
+}
+
+.oscura a {
+  color: white;
+  text-decoration: underline;
+}
+
+/* ---------- PAGINACION ---------- */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 60px 0;
+}
+
+.paginacion .activa {
+  border: 1px solid #222;
+  border-radius: 50%;
+  padding: 2px 7px;
+}
+
+/* ---------- SOBRE NOSOTROS ---------- */
+.nosotros {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+  padding: 100px 0;
+}
+
+.nosotros h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 26px;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  line-height: 1.6;
+}
+
+.texto a {
+  text-decoration: underline;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 26px;
+  padding: 60px 0;
+  background-color: #f8f6f3;
+  margin: 0 -50px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.columna h4 {
+  font-size: 10px;
+  color: #999;
+  font-weight: normal;
+}
