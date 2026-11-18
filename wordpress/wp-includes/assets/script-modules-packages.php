@@ -64,7 +64,7 @@
 				'import' => 'static'
 			)
 		),
-		'version' => '25f29e3c6cc00370914b'
+		'version' => '25ee935fd6c67371d0f3'
 	),
 	'block-library/navigation/view.js' => array(
 		'dependencies' => array(
@@ -253,7 +253,7 @@
 		'dependencies' => array(
 			
 		),
-		'version' => '6a43cba92ed701f32cd9'
+		'version' => 'efaa5193bbad9c60ffd1'
 	),
 	'interactivity-router/full-page.js' => array(
 		'dependencies' => array(
@@ -281,7 +281,7 @@
 				'import' => 'static'
 			)
 		),
-		'version' => 'dea5032c2153d213c1ee'
+		'version' => 'a6e90b8896f83fb1b5dd'
 	),
 	'latex-to-mathml/index.js' => array(
 		'dependencies' => array(
@@ -360,7 +360,7 @@
 		'dependencies' => array(
 			
 		),
-		'version' => '7e33cd8c4128731126e8'
+		'version' => '685442d334b2d3e70832'
 	),
 	'workflow/index.js' => array(
 		'dependencies' => array(

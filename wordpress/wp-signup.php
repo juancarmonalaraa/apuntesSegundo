@@ -569,7 +569,7 @@ function confirm_another_blog_signup( $domain, $path, $blog_title, $user_name, $
 				untrailingslashit( $domain . $path )
 			),
 			esc_url( $login_url ),
-			esc_html( $user_name )
+			$user_name
 		);
 		?>
 	</p>

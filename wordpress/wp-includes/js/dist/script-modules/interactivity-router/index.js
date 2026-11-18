@@ -714,32 +714,11 @@ var cloneRouterRegionContent = (vdom) => {
 var regionsToAttachByParent = /* @__PURE__ */ new WeakMap();
 var rootFragmentsByParent = /* @__PURE__ */ new WeakMap();
 var initialRegionsToAttach = /* @__PURE__ */ new Set();
-var isValidPageResponse = (response) => {
-  if (response.status !== 200) {
-    return false;
-  }
-  try {
-    if (new URL(response.url).origin !== window.location.origin) {
-      return false;
-    }
-  } catch {
-    return false;
-  }
-  const contentType = response.headers.get("content-type") ?? "";
-  if (contentType.includes(",") || contentType.split(";")[0].trim().toLowerCase() !== "text/html") {
-    return false;
-  }
-  return true;
-};
 var fetchPage = async (url, { html }) => {
   try {
     if (!html) {
-      const requestUrl = new URL(url, window.location.href);
-      if (requestUrl.origin !== window.location.origin) {
-        return false;
-      }
-      const res = await window.fetch(requestUrl.href);
-      if (!isValidPageResponse(res)) {
+      const res = await window.fetch(url);
+      if (res.status !== 200) {
         return false;
       }
       html = await res.text();
@@ -752,8 +731,8 @@ var fetchPage = async (url, { html }) => {
 };
 var preparePage = async (url, dom, { vdom } = {}) => {
   dom.querySelectorAll("noscript").forEach((el) => el.remove());
-  const regions = /* @__PURE__ */ Object.create(null);
-  const regionsToAttach = /* @__PURE__ */ Object.create(null);
+  const regions = {};
+  const regionsToAttach = {};
   dom.querySelectorAll(regionsSelector).forEach((region) => {
     const { id, attachTo } = parseRegionAttribute(region);
     if (region.parentElement.closest(`[${regionAttr}]`)) {
@@ -783,10 +762,7 @@ var preparePage = async (url, dom, { vdom } = {}) => {
 };
 var renderPage = (page) => {
   applyStyles(page.styles);
-  const regionsToAttach = Object.assign(
-    /* @__PURE__ */ Object.create(null),
-    page.regionsToAttach
-  );
+  const regionsToAttach = { ...page.regionsToAttach };
   batch(() => {
     populateServerData(page.initialData);
     navigationSignal.value += 1;
@@ -919,7 +895,6 @@ var { state, actions } = store("core/router", {
      * @return  Promise that resolves once the navigation is completed or aborted.
      */
     *navigate(href, options = {}) {
-      options = Object.assign(/* @__PURE__ */ Object.create(null), options);
       const { clientNavigationDisabled } = getConfig();
       if (clientNavigationDisabled) {
         yield forcePageReload(href);
@@ -992,7 +967,6 @@ var { state, actions } = store("core/router", {
      * @return  Promise that resolves once the page has been fetched.
      */
     *prefetch(url, options = {}) {
-      options = Object.assign(/* @__PURE__ */ Object.create(null), options);
       const { clientNavigationDisabled } = getConfig();
       if (clientNavigationDisabled) {
         return;
@@ -1012,12 +986,12 @@ state.url = state.url || window.location.href;
 function a11ySpeak(messageKey) {
   if (!hasLoadedNavigationTextsData) {
     hasLoadedNavigationTextsData = true;
-    const script = document.querySelector(
-      'script[id="wp-script-module-data-@wordpress/interactivity-router"]'
-    );
-    if (script instanceof HTMLScriptElement) {
+    const content = document.getElementById(
+      "wp-script-module-data-@wordpress/interactivity-router"
+    )?.textContent;
+    if (content) {
       try {
-        const parsed = JSON.parse(script.text);
+        const parsed = JSON.parse(content);
         if (typeof parsed?.i18n?.loading === "string") {
           navigationTexts.loading = parsed.i18n.loading;
         }

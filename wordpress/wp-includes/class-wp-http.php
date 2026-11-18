@@ -1023,10 +1023,7 @@ class WP_Http {
 
 			// Strip all /path/../ out of the path.
 			while ( strpos( $path, '../' ) > 1 ) {
-				$path = preg_replace( '![^/]+/\.\./!', '', $path, -1, $segment_replacement_count );
-				if ( 0 === $segment_replacement_count ) {
-					break;
-				}
+				$path = preg_replace( '![^/]+/\.\./!', '', $path );
 			}
 
 			// Strip any final leading ../ from the path.

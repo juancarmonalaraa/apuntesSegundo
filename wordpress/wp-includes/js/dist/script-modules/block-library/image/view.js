@@ -29,10 +29,6 @@ function getImageSrc({ uploadedSrc }) {
 function getImageSrcset({ lightboxSrcset }) {
   return lightboxSrcset || "";
 }
-function getImageMetadata(imageId) {
-  const metadata = state.metadata[imageId];
-  return Object.hasOwn(state.metadata, imageId) ? metadata : void 0;
-}
 var { state, actions, callbacks } = store(
   "core/image",
   {
@@ -59,7 +55,7 @@ var { state, actions, callbacks } = store(
         );
       },
       get selectedImage() {
-        return getImageMetadata(state.selectedImageId);
+        return state.metadata[state.selectedImageId];
       },
       get hasNavigationIcon() {
         const { navigationButtonType } = state.selectedImage;
@@ -71,7 +67,7 @@ var { state, actions, callbacks } = store(
       },
       get thisImage() {
         const { imageId } = getContext();
-        return getImageMetadata(imageId);
+        return state.metadata[imageId];
       },
       get hasNavigation() {
         return state.galleryImages.length > 1;
@@ -133,7 +129,7 @@ var { state, actions, callbacks } = store(
     actions: {
       showLightbox() {
         const { imageId } = getContext();
-        if (!getImageMetadata(imageId)?.imageRef?.complete) {
+        if (!state.metadata[imageId].imageRef?.complete) {
           return;
         }
         state.scrollTopReset = document.documentElement.scrollTop;
@@ -248,10 +244,7 @@ var { state, actions, callbacks } = store(
         if (state.preloadedImageIds.has(imageId)) {
           return;
         }
-        const imageMetadata = getImageMetadata(imageId);
-        if (!imageMetadata) {
-          return;
-        }
+        const imageMetadata = state.metadata[imageId];
         const imageLink = document.createElement("link");
         imageLink.rel = "preload";
         imageLink.as = "image";
@@ -400,12 +393,8 @@ var { state, actions, callbacks } = store(
           return;
         }
         const { imageId } = getContext();
-        const imageMetadata = getImageMetadata(imageId);
-        if (!imageMetadata) {
-          return;
-        }
-        imageMetadata.imageRef = ref;
-        imageMetadata.currentSrc = ref.currentSrc;
+        state.metadata[imageId].imageRef = ref;
+        state.metadata[imageId].currentSrc = ref.currentSrc;
         const {
           naturalWidth,
           naturalHeight,
@@ -431,7 +420,7 @@ var { state, actions, callbacks } = store(
         const buttonOffsetRight = figureWidth - offsetWidth;
         let buttonTop = buttonOffsetTop + 16;
         let buttonRight = buttonOffsetRight + 16;
-        if (imageMetadata.scaleAttr === "contain") {
+        if (state.metadata[imageId].scaleAttr === "contain") {
           const naturalRatio = naturalWidth / naturalHeight;
           const offsetRatio = offsetWidth / offsetHeight;
           if (naturalRatio >= offsetRatio) {
@@ -444,8 +433,8 @@ var { state, actions, callbacks } = store(
             buttonRight = (offsetWidth - referenceWidth) / 2 + buttonOffsetRight + 16;
           }
         }
-        imageMetadata.buttonTop = buttonTop;
-        imageMetadata.buttonRight = buttonRight;
+        state.metadata[imageId].buttonTop = buttonTop;
+        state.metadata[imageId].buttonRight = buttonRight;
       },
       setOverlayFocus() {
         if (state.overlayEnabled) {
@@ -465,10 +454,7 @@ var { state, actions, callbacks } = store(
       initTriggerButton() {
         const { imageId } = getContext();
         const { ref } = getElement();
-        const imageMetadata = getImageMetadata(imageId);
-        if (imageMetadata) {
-          imageMetadata.buttonRef = ref;
-        }
+        state.metadata[imageId].buttonRef = ref;
       }
     }
   },
