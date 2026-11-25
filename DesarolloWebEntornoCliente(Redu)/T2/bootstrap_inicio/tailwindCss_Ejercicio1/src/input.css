@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.card{
+    @apply shadow-2xl p-16 rounde2xl max-w-[20%] min-h-300;
+}
