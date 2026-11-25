@@ -10,7 +10,7 @@ class EquipoRepositorio
     public function listar(): array
     {
         return $this->pdo
-            ->query('SELECT nombre, unidades FROM equipo ORDER BY id DESC')
+            ->query('SELECT id, nombre, unidades FROM equipo ORDER BY id DESC')
             ->fetchAll();
     }
 
