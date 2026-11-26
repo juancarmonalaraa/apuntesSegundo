@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)https://www2.artegranada.com/aplicaciones/cursoss/archivos/2026/tailwindDarkMode.html -->
+<html lang="es" class="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./ejercicioDarkMode_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./ejercicioDarkMode_files/output.css">
+
+    <style>
+        
+    </style>
+
+</head>
+<body>
+
+<header class="flex justify-around items-center px-10 py-10 ">
+    <a href="https://www2.artegranada.com/aplicaciones/cursoss/archivos/2026/tailwindDarkMode.html">
+        <img src="./ejercicioDarkMode_files/logo-modo-claro.png" alt="" class="h-8">
+    </a>
+
+    <nav class="space-x-6">
+        <a href="https://www2.artegranada.com/aplicaciones/cursoss/archivos/2026/tailwindDarkMode.html">Funiones</a>
+        <a href="https://www2.artegranada.com/aplicaciones/cursoss/archivos/2026/tailwindDarkMode.html">Precios</a>
+        <a href="https://www2.artegranada.com/aplicaciones/cursoss/archivos/2026/tailwindDarkMode.html">Empezar</a>
+        <a href="https://www2.artegranada.com/aplicaciones/cursoss/archivos/2026/tailwindDarkMode.html" class="bg-violet-700 text-white px-6 py-3 rounded-full">Prueba gratis</a>
+
+    </nav>
+
+    <button class="border-[1px] border-gray-200 rounded-full p-2">
+     
+        <img src="./ejercicioDarkMode_files/icono-luna.png" alt="" class="h-8 w-8 cursor-pointer hidden">
+        <img src="./ejercicioDarkMode_files/icono-sol.png" alt="" class="h-8 w-8 hidden block">
+    </button>
+
+</header>
+
+<p class="dark:bg-amber-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quo debitis atque a repellendus, qui dolores delectus quia inventore doloribus est dicta fuga perspiciatis ex id laboriosam similique maiores vel.</p>
+    
+<script>
+
+const luna = document.querySelector("button img:first-child"); 
+const sol = document.querySelector("button img:last-child"); 
+const boton = document.querySelector("button");
+boton.addEventListener("click",()=>{
+   document.documentElement.classList.toggle("dark");
+   sol.classList.add("block");
+   luna.classList.add("hidden");
+});
+
+
+
+
+</script>
+
+
+</body></html>

@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+    .card {
+        @apply border border-slate-200 rounded-2xl p-6 hover:shadow-md;
+    }
+}
